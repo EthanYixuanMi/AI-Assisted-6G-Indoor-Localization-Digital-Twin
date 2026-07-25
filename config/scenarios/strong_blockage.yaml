@@ -1,0 +1,18 @@
+scenario:
+  name: strong_blockage
+  label: Strong Blockage
+  description: "Large positive NLoS distance bias and stronger material losses."
+
+propagation:
+  noise_std: 2.2
+  nlos_bias_mean: 7.5
+  nlos_bias_std: 1.5
+  wall_loss_multiplier: 1.65
+  obstacle_loss_multiplier: 1.65
+  dropout_probability: 0.04
+  fixed_offline_anchors: []
+  spatial_bias:
+    amplitude: 2.2
+    correlation_sigma: 1.2
+    seed_offset: 3907
+

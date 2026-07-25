@@ -1,0 +1,213 @@
+project:
+  name: "AI-Assisted 6G Indoor Localization Digital Twin"
+  description: "Software-only, two-dimensional indoor localization simulation"
+
+environment:
+  width: 30.0
+  height: 20.0
+  boundary_margin: 0.20
+  anchors:
+    - anchor_id: A1
+      x: 1.0
+      y: 1.0
+      reference_power: -38.0
+      path_loss_exponent: 2.00
+      online: true
+      hardware_bias: 0.2
+    - anchor_id: A2
+      x: 15.0
+      y: 1.0
+      reference_power: -38.5
+      path_loss_exponent: 2.05
+      online: true
+      hardware_bias: -0.3
+    - anchor_id: A3
+      x: 29.0
+      y: 1.0
+      reference_power: -38.0
+      path_loss_exponent: 2.10
+      online: true
+      hardware_bias: 0.4
+    - anchor_id: A4
+      x: 29.0
+      y: 19.0
+      reference_power: -39.0
+      path_loss_exponent: 2.00
+      online: true
+      hardware_bias: -0.1
+    - anchor_id: A5
+      x: 15.0
+      y: 19.0
+      reference_power: -38.5
+      path_loss_exponent: 2.05
+      online: true
+      hardware_bias: 0.3
+    - anchor_id: A6
+      x: 1.0
+      y: 19.0
+      reference_power: -38.0
+      path_loss_exponent: 2.10
+      online: true
+      hardware_bias: -0.2
+  walls:
+    - wall_id: W1
+      start: [9.0, 9.0]
+      end: [11.0, 9.0]
+      attenuation: 5.0
+      wall_type: concrete
+    - wall_id: W2
+      start: [19.0, 11.0]
+      end: [21.0, 11.0]
+      attenuation: 4.0
+      wall_type: partition
+    - wall_id: W3
+      start: [15.0, 14.0]
+      end: [17.0, 14.0]
+      attenuation: 3.5
+      wall_type: partition
+  obstacles:
+    - obstacle_id: O1
+      x_min: 4.0
+      y_min: 5.0
+      x_max: 6.0
+      y_max: 7.0
+      attenuation: 6.0
+      material: machinery
+    - obstacle_id: O2
+      x_min: 14.0
+      y_min: 4.0
+      x_max: 16.0
+      y_max: 6.0
+      attenuation: 7.0
+      material: machinery
+    - obstacle_id: O3
+      x_min: 24.0
+      y_min: 14.0
+      x_max: 26.0
+      y_max: 16.0
+      attenuation: 6.5
+      material: shelving
+  regions:
+    - region_id: open_lab
+      x_min: 0.0
+      y_min: 0.0
+      x_max: 10.0
+      y_max: 20.0
+      path_loss_exponent_offset: -0.05
+      noise_std_multiplier: 0.90
+      nlos_bias_offset: 0.0
+    - region_id: production_area
+      x_min: 10.0
+      y_min: 0.0
+      x_max: 20.0
+      y_max: 20.0
+      path_loss_exponent_offset: 0.08
+      noise_std_multiplier: 1.05
+      nlos_bias_offset: 0.4
+    - region_id: storage_area
+      x_min: 20.0
+      y_min: 0.0
+      x_max: 30.0
+      y_max: 20.0
+      path_loss_exponent_offset: 0.16
+      noise_std_multiplier: 1.20
+      nlos_bias_offset: 0.8
+
+propagation:
+  reference_distance: 1.0
+  minimum_distance: 0.35
+  default_reference_power: -38.0
+  default_path_loss_exponent: 2.05
+  noise_std: 1.5
+  nlos_bias_mean: 3.5
+  nlos_bias_std: 0.8
+  wall_loss_multiplier: 1.0
+  obstacle_loss_multiplier: 1.0
+  dropout_probability: 0.01
+  fixed_offline_anchors: []
+  spatial_bias:
+    enabled: true
+    amplitude: 1.8
+    grid_shape: [9, 13]
+    correlation_sigma: 1.25
+    seed_offset: 1907
+
+sampling:
+  train_count: 6000
+  validation_count: 1500
+  test_count: 2000
+  spatial_holdout_count: 1500
+  domain_shift_count: 1500
+  anchor_failure_count: 1500
+  grid_fraction: 0.35
+  obstacle_clearance: 0.12
+  spatial_holdout:
+    axis: x
+    threshold: 23.0
+    buffer: 1.0
+    side: high
+  trajectories:
+    points_per_trajectory: 100
+    definitions:
+      - trajectory_id: straight
+        waypoints:
+          - [2.0, 2.0]
+          - [9.0, 2.0]
+          - [19.0, 2.0]
+          - [28.0, 2.0]
+      - trajectory_id: turning
+        waypoints:
+          - [2.0, 17.0]
+          - [8.0, 17.0]
+          - [8.0, 12.0]
+          - [14.0, 12.0]
+          - [14.0, 17.0]
+          - [20.0, 17.0]
+          - [20.0, 18.0]
+          - [28.0, 18.0]
+      - trajectory_id: blockage
+        waypoints:
+          - [2.0, 10.0]
+          - [8.5, 8.0]
+          - [11.5, 8.0]
+          - [18.5, 8.0]
+          - [21.5, 8.0]
+          - [28.0, 11.0]
+
+split_names:
+  training: train
+  validation: validation
+  in_domain_test: test
+  spatial_holdout_test: spatial_holdout
+  domain_shift_test: domain_shift
+  anchor_failure_test: anchor_failure
+
+scenario:
+  name: normal
+
+experiment:
+  seed: 42
+  noise_levels_db: [0.5, 1.0, 2.0, 3.0, 5.0, 7.0]
+  wall_loss_multipliers: [0.75, 1.0, 1.35, 1.65]
+  random_anchor_failure_counts: [0, 1, 2, 3]
+  fixed_anchor_failure_ids: [A2, A5]
+  runtime_warmup_batches: 2
+
+models:
+  geometric:
+    use_rss_weights: true
+    minimum_weight: 0.2
+  knn:
+    k_candidates: [3, 5, 7, 9]
+    weights: distance
+  direct_ai:
+    hidden_layer_sizes: [64, 32]
+    max_iter: 220
+    early_stopping: true
+  residual_ai:
+    estimator: extra_trees
+    n_estimators: 120
+    max_depth: 18
+  kalman:
+    process_noise: 0.08
+    measurement_noise: 1.0

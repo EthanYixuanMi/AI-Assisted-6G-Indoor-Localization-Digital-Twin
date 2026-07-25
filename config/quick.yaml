@@ -1,0 +1,22 @@
+profile:
+  name: quick
+  description: "Laptop-friendly course demonstration profile"
+  seeds: [42, 123, 2026]
+
+sampling:
+  train_count: 6000
+  validation_count: 1500
+  test_count: 2000
+  spatial_holdout_count: 1500
+  domain_shift_count: 1500
+  anchor_failure_count: 1500
+  trajectories:
+    points_per_trajectory: 100
+
+models:
+  direct_ai:
+    hidden_layer_sizes: [64, 32]
+    max_iter: 220
+  residual_ai:
+    n_estimators: 120
+

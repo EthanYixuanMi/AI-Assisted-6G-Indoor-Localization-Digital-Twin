@@ -1,0 +1,22 @@
+profile:
+  name: full
+  description: "Larger multi-seed profile for final report assets"
+  seeds: [42, 123, 2026, 31415, 27182]
+
+sampling:
+  train_count: 20000
+  validation_count: 4000
+  test_count: 6000
+  spatial_holdout_count: 4000
+  domain_shift_count: 4000
+  anchor_failure_count: 4000
+  trajectories:
+    points_per_trajectory: 180
+
+models:
+  direct_ai:
+    hidden_layer_sizes: [96, 48]
+    max_iter: 300
+  residual_ai:
+    n_estimators: 200
+

@@ -1,0 +1,18 @@
+scenario:
+  name: anchor_failure
+  label: Anchor Failure
+  description: "Two fixed anchors are offline and remaining links can drop."
+
+propagation:
+  noise_std: 2.0
+  nlos_bias_mean: 4.0
+  nlos_bias_std: 1.0
+  wall_loss_multiplier: 1.0
+  obstacle_loss_multiplier: 1.0
+  dropout_probability: 0.10
+  fixed_offline_anchors: [A2, A5]
+  spatial_bias:
+    amplitude: 2.0
+    correlation_sigma: 1.25
+    seed_offset: 4907
+

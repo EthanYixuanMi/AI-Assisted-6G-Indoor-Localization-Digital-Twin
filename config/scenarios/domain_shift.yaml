@@ -1,0 +1,63 @@
+scenario:
+  name: domain_shift
+  label: Domain Shift
+  description: "Changed propagation calibration and anchor hardware offsets."
+
+environment:
+  anchors:
+    - anchor_id: A1
+      x: 1.0
+      y: 1.0
+      reference_power: -38.0
+      path_loss_exponent: 2.28
+      online: true
+      hardware_bias: 1.1
+    - anchor_id: A2
+      x: 15.0
+      y: 1.0
+      reference_power: -38.5
+      path_loss_exponent: 2.32
+      online: true
+      hardware_bias: -1.2
+    - anchor_id: A3
+      x: 29.0
+      y: 1.0
+      reference_power: -38.0
+      path_loss_exponent: 2.35
+      online: true
+      hardware_bias: 0.9
+    - anchor_id: A4
+      x: 29.0
+      y: 19.0
+      reference_power: -39.0
+      path_loss_exponent: 2.25
+      online: true
+      hardware_bias: -0.8
+    - anchor_id: A5
+      x: 15.0
+      y: 19.0
+      reference_power: -38.5
+      path_loss_exponent: 2.30
+      online: true
+      hardware_bias: 1.0
+    - anchor_id: A6
+      x: 1.0
+      y: 19.0
+      reference_power: -38.0
+      path_loss_exponent: 2.33
+      online: true
+      hardware_bias: -1.0
+
+propagation:
+  noise_std: 2.8
+  nlos_bias_mean: 5.0
+  nlos_bias_std: 1.2
+  wall_loss_multiplier: 1.25
+  obstacle_loss_multiplier: 1.25
+  dropout_probability: 0.05
+  fixed_offline_anchors: []
+  spatial_bias:
+    amplitude: 3.0
+    correlation_sigma: 1.8
+    seed_offset: 5907
+
