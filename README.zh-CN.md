@@ -262,7 +262,3 @@ python -m pytest -q --basetemp .test-tmp/pytest
 CSI、天线阵列、同步误差、三维多径或动态人体遮挡，也没有物理系统的双向同步。
 Domain Shift 只是受控的仿真压力测试，不能作为真实建筑迁移证据。
 
-## 项目成员
-
-Xin Bao · Chenghao Li · Yuhang Li · Yixuan Mi · Qihan Wu · Yuhan Wang ·
-Chuchen Xu · Tingting Yang
