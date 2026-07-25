@@ -1,0 +1,23 @@
+flowchart LR
+    %% Reference source for report_assets/figures/system_architecture.svg.
+    %% Colors follow the Okabe-Ito color-universal-design palette.
+    SC["1 · Scenario Controller<br/>YAML profiles · seeds · perturbations · replay"]
+    ET["2 · Environment & Signal Twin<br/>floor plan · anchors · LoS/NLoS · RSS"]
+    DF["3 · Data & Feature Layer<br/>spatial splits · masks · distances · saved artifacts"]
+    LE["4 · Localization Engines<br/>Geometric LS · KNN · Direct AI · Residual AI · Kalman"]
+    ED["5 · Evaluation & Dashboard<br/>accuracy · robustness · runtime · interactive replay"]
+
+    SC --> ET --> DF --> LE --> ED
+    ED -. "saved evidence informs the next controlled replay" .-> SC
+
+    classDef scenario fill:#fff5dc,stroke:#E69F00,color:#1d2730,stroke-width:2px;
+    classDef twin fill:#e8f5fc,stroke:#56B4E9,color:#1d2730,stroke-width:2px;
+    classDef data fill:#e5eff8,stroke:#0072B2,color:#1d2730,stroke-width:2px;
+    classDef engines fill:#e7f5ef,stroke:#009E73,color:#1d2730,stroke-width:2px;
+    classDef dashboard fill:#f8eaf3,stroke:#CC79A7,color:#1d2730,stroke-width:2px;
+
+    class SC scenario;
+    class ET twin;
+    class DF data;
+    class LE engines;
+    class ED dashboard;

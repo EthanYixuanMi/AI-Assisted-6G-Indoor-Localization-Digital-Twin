@@ -1,0 +1,88 @@
+{
+  "artifact_type": "compact_dashboard_replay",
+  "success": true,
+  "purpose": "GitHub-friendly, trajectory-only replay for the Streamlit dashboard",
+  "source_run": {
+    "profile": "full",
+    "directory": "qa/full_20260726_010859",
+    "manifest": "../../results/full-profile/manifest.json",
+    "training_seed": 42,
+    "evaluation_seeds": [
+      42,
+      123,
+      2026,
+      31415,
+      27182
+    ]
+  },
+  "scope": {
+    "rows": 4500,
+    "split": "trajectories",
+    "frames_per_scenario_algorithm": 180,
+    "scenarios": [
+      "normal",
+      "high_noise",
+      "strong_blockage",
+      "anchor_failure",
+      "domain_shift"
+    ],
+    "algorithms": [
+      "Geometric LS",
+      "KNN",
+      "Direct AI",
+      "Residual AI",
+      "Residual AI + Kalman"
+    ],
+    "limitations": [
+      "This replay is for interactive visualization only.",
+      "It cannot reproduce the full-profile aggregate metrics or seed-42 spatial-holdout CDF.",
+      "The complete replay can be regenerated with scripts/run_pipeline.py --profile full."
+    ]
+  },
+  "public_release_normalization": {
+    "config_paths_rewritten_relative": true,
+    "scientific_parameters_changed": false
+  },
+  "files": [
+    {
+      "path": "ablation_results.csv",
+      "size_bytes": 4139,
+      "sha256": "9cc9215f14850a2a51422babd2fbc201efece9662de3f3f5fa396b2afd78b371"
+    },
+    {
+      "path": "config_resolved.yaml",
+      "size_bytes": 5338,
+      "sha256": "e33d18a1f80c79d419b203837928aec33e19aa461f1a64bce2c2561a34e9b35c"
+    },
+    {
+      "path": "environment.json",
+      "size_bytes": 3248,
+      "sha256": "f8b2e0bbc34d0c2953adbbe886743de5d9330ff50ee21ee8181aa5d68ee982a9"
+    },
+    {
+      "path": "metrics.csv",
+      "size_bytes": 13471,
+      "sha256": "d25c4d30d9bd3e994a291c6ab888be9a0ccfdc3b93669c2d7f619ecf602e282a"
+    },
+    {
+      "path": "per_sample_predictions.csv",
+      "size_bytes": 3278806,
+      "sha256": "b11430424acfe6fc7e331833db1d0f18e63b41e9647c67909243521a9f451250"
+    },
+    {
+      "path": "robustness_results.csv",
+      "size_bytes": 148929,
+      "sha256": "e48725fed42d59d873f74bcd633d2ccaf0e8c6d5962147ed071b3ba792651853"
+    },
+    {
+      "path": "runtime_results.csv",
+      "size_bytes": 1198,
+      "sha256": "31c1d464eae6192d0f04cd1b6ef869ed51544f5fc3a3cebc2f97855dad1aaf2a"
+    },
+    {
+      "path": "seeds.json",
+      "size_bytes": 111,
+      "sha256": "137eb1787a51009ea3b8209396ebeb90467f9c3a183065b1f5a58e77f40491dd"
+    }
+  ]
+}

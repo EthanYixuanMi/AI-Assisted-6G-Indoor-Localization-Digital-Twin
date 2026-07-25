@@ -1,0 +1,163 @@
+{
+  "width": 30.0,
+  "height": 20.0,
+  "boundary_margin": 0.2,
+  "anchors": [
+    {
+      "anchor_id": "A1",
+      "x": 1.0,
+      "y": 1.0,
+      "reference_power": -38.0,
+      "path_loss_exponent": 2.0,
+      "online": true,
+      "hardware_bias": 0.2
+    },
+    {
+      "anchor_id": "A2",
+      "x": 15.0,
+      "y": 1.0,
+      "reference_power": -38.5,
+      "path_loss_exponent": 2.05,
+      "online": true,
+      "hardware_bias": -0.3
+    },
+    {
+      "anchor_id": "A3",
+      "x": 29.0,
+      "y": 1.0,
+      "reference_power": -38.0,
+      "path_loss_exponent": 2.1,
+      "online": true,
+      "hardware_bias": 0.4
+    },
+    {
+      "anchor_id": "A4",
+      "x": 29.0,
+      "y": 19.0,
+      "reference_power": -39.0,
+      "path_loss_exponent": 2.0,
+      "online": true,
+      "hardware_bias": -0.1
+    },
+    {
+      "anchor_id": "A5",
+      "x": 15.0,
+      "y": 19.0,
+      "reference_power": -38.5,
+      "path_loss_exponent": 2.05,
+      "online": true,
+      "hardware_bias": 0.3
+    },
+    {
+      "anchor_id": "A6",
+      "x": 1.0,
+      "y": 19.0,
+      "reference_power": -38.0,
+      "path_loss_exponent": 2.1,
+      "online": true,
+      "hardware_bias": -0.2
+    }
+  ],
+  "walls": [
+    {
+      "wall_id": "W1",
+      "start": [
+        9.0,
+        9.0
+      ],
+      "end": [
+        11.0,
+        9.0
+      ],
+      "attenuation": 5.0,
+      "wall_type": "concrete"
+    },
+    {
+      "wall_id": "W2",
+      "start": [
+        19.0,
+        11.0
+      ],
+      "end": [
+        21.0,
+        11.0
+      ],
+      "attenuation": 4.0,
+      "wall_type": "partition"
+    },
+    {
+      "wall_id": "W3",
+      "start": [
+        15.0,
+        14.0
+      ],
+      "end": [
+        17.0,
+        14.0
+      ],
+      "attenuation": 3.5,
+      "wall_type": "partition"
+    }
+  ],
+  "obstacles": [
+    {
+      "obstacle_id": "O1",
+      "x_min": 4.0,
+      "y_min": 5.0,
+      "x_max": 6.0,
+      "y_max": 7.0,
+      "attenuation": 6.0,
+      "material": "machinery"
+    },
+    {
+      "obstacle_id": "O2",
+      "x_min": 14.0,
+      "y_min": 4.0,
+      "x_max": 16.0,
+      "y_max": 6.0,
+      "attenuation": 7.0,
+      "material": "machinery"
+    },
+    {
+      "obstacle_id": "O3",
+      "x_min": 24.0,
+      "y_min": 14.0,
+      "x_max": 26.0,
+      "y_max": 16.0,
+      "attenuation": 6.5,
+      "material": "shelving"
+    }
+  ],
+  "regions": [
+    {
+      "region_id": "open_lab",
+      "x_min": 0.0,
+      "y_min": 0.0,
+      "x_max": 10.0,
+      "y_max": 20.0,
+      "path_loss_exponent_offset": -0.05,
+      "noise_std_multiplier": 0.9,
+      "nlos_bias_offset": 0.0
+    },
+    {
+      "region_id": "production_area",
+      "x_min": 10.0,
+      "y_min": 0.0,
+      "x_max": 20.0,
+      "y_max": 20.0,
+      "path_loss_exponent_offset": 0.08,
+      "noise_std_multiplier": 1.05,
+      "nlos_bias_offset": 0.4
+    },
+    {
+      "region_id": "storage_area",
+      "x_min": 20.0,
+      "y_min": 0.0,
+      "x_max": 30.0,
+      "y_max": 20.0,
+      "path_loss_exponent_offset": 0.16,
+      "noise_std_multiplier": 1.2,
+      "nlos_bias_offset": 0.8
+    }
+  ]
+}
