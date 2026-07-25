@@ -1,0 +1,23 @@
+profile:
+  name: smoke
+  description: "Tiny profile used only by the end-to-end pytest smoke test"
+  seeds: [42]
+
+sampling:
+  train_count: 160
+  validation_count: 50
+  test_count: 60
+  spatial_holdout_count: 60
+  domain_shift_count: 60
+  anchor_failure_count: 60
+  trajectories:
+    points_per_trajectory: 20
+
+models:
+  direct_ai:
+    hidden_layer_sizes: [24]
+    max_iter: 60
+  residual_ai:
+    n_estimators: 24
+    max_depth: 12
+
