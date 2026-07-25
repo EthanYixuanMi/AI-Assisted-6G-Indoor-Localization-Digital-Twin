@@ -1,0 +1,169 @@
+{
+  "artifact_type": "simulation_visual_assets",
+  "figure_protocols": {
+    "ablation_results": {
+      "excluded_protocols": [
+        "trajectory filtering"
+      ],
+      "filters": {
+        "comparison": "feature ablations on spatial holdout",
+        "exclude_variant_substring_case_insensitive": "kalman"
+      },
+      "source_data_file": "data/ablation_results_source.csv",
+      "source_file": "ablation_results.csv"
+    },
+    "error_cdf": {
+      "excluded_protocols": [
+        "trajectories",
+        "Kalman smoothing"
+      ],
+      "filters": {
+        "algorithms": [
+          "Geometric LS",
+          "KNN",
+          "Direct AI",
+          "Residual AI"
+        ],
+        "scenario": "normal",
+        "split": "spatial_holdout"
+      },
+      "source_data_file": "data/error_cdf_source.csv",
+      "source_file": "per_sample_predictions.csv"
+    }
+  },
+  "generated_at_utc": "2026-07-25T17:32:41+00:00",
+  "generated_files": [
+    {
+      "bytes": 14370,
+      "path": "figures/ablation_results.pdf"
+    },
+    {
+      "bytes": 68467,
+      "path": "figures/ablation_results.png"
+    },
+    {
+      "bytes": 645795,
+      "path": "figures/dashboard_overview.png"
+    },
+    {
+      "bytes": 48308,
+      "path": "figures/error_cdf.pdf"
+    },
+    {
+      "bytes": 91934,
+      "path": "figures/error_cdf.png"
+    },
+    {
+      "bytes": 14643,
+      "path": "figures/los_nlos_comparison.pdf"
+    },
+    {
+      "bytes": 84567,
+      "path": "figures/los_nlos_comparison.png"
+    },
+    {
+      "bytes": 15458,
+      "path": "figures/robustness_anchor_failure.pdf"
+    },
+    {
+      "bytes": 100124,
+      "path": "figures/robustness_anchor_failure.png"
+    },
+    {
+      "bytes": 15447,
+      "path": "figures/robustness_noise.pdf"
+    },
+    {
+      "bytes": 109741,
+      "path": "figures/robustness_noise.png"
+    },
+    {
+      "bytes": 18766,
+      "path": "figures/robustness_results.pdf"
+    },
+    {
+      "bytes": 188448,
+      "path": "figures/robustness_results.png"
+    },
+    {
+      "bytes": 21325,
+      "path": "figures/runtime_comparison.pdf"
+    },
+    {
+      "bytes": 132497,
+      "path": "figures/runtime_comparison.png"
+    },
+    {
+      "bytes": 29819,
+      "path": "figures/spatial_error_heatmaps.pdf"
+    },
+    {
+      "bytes": 517924,
+      "path": "figures/spatial_error_heatmaps.png"
+    },
+    {
+      "bytes": 8131,
+      "path": "figures/system_architecture.svg"
+    },
+    {
+      "bytes": 28499,
+      "path": "figures/trajectory_comparison.pdf"
+    },
+    {
+      "bytes": 207503,
+      "path": "figures/trajectory_comparison.png"
+    },
+    {
+      "bytes": 931606,
+      "path": "screenshots/dashboard_anchor_failure.png"
+    },
+    {
+      "bytes": 860035,
+      "path": "screenshots/dashboard_domain_shift.png"
+    },
+    {
+      "bytes": 962040,
+      "path": "screenshots/dashboard_high_noise.png"
+    },
+    {
+      "bytes": 644379,
+      "path": "screenshots/dashboard_normal.png"
+    },
+    {
+      "bytes": 712798,
+      "path": "screenshots/dashboard_strong_blockage.png"
+    }
+  ],
+  "no_fabricated_fallback_data": true,
+  "source_directory": "full_20260726_010859",
+  "source_files": {
+    "ablation_results.csv": {
+      "bytes": 4139,
+      "sha256": "9cc9215f14850a2a51422babd2fbc201efece9662de3f3f5fa396b2afd78b371"
+    },
+    "config_resolved.yaml": {
+      "bytes": 5485,
+      "sha256": "1a745588413abbfd4ed2eb2eabe5d5ac9163f7320c3e6205c15ccddac34bf7ad"
+    },
+    "environment.json": {
+      "bytes": 3248,
+      "sha256": "f8b2e0bbc34d0c2953adbbe886743de5d9330ff50ee21ee8181aa5d68ee982a9"
+    },
+    "metrics.csv": {
+      "bytes": 13471,
+      "sha256": "d25c4d30d9bd3e994a291c6ab888be9a0ccfdc3b93669c2d7f619ecf602e282a"
+    },
+    "per_sample_predictions.csv": {
+      "bytes": 59274657,
+      "sha256": "675c9e73ab43b2bb769248b0fdd05a78025f7148a90e15bb66bd6717b46d3a7c"
+    },
+    "robustness_results.csv": {
+      "bytes": 148929,
+      "sha256": "e48725fed42d59d873f74bcd633d2ccaf0e8c6d5962147ed071b3ba792651853"
+    },
+    "runtime_results.csv": {
+      "bytes": 1198,
+      "sha256": "31c1d464eae6192d0f04cd1b6ef869ed51544f5fc3a3cebc2f97855dad1aaf2a"
+    }
+  }
+}

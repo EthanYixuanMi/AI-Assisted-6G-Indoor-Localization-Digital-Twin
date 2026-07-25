@@ -1,0 +1,55 @@
+{
+  "algorithms": [
+    {
+      "algorithm": "Geometric LS",
+      "training_time_s": 1.1000010999850929e-06,
+      "inference_time_ms": 2.7179000007890863,
+      "batch_inference_time_ms": 13014.670999998998,
+      "batch_amortized_time_ms": 3.2536677499997495,
+      "model_size_mb": 0.0006723403930664062,
+      "dashboard_update_ms": 6.624350000492996,
+      "dashboard_update_scope": "saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering"
+    },
+    {
+      "algorithm": "KNN",
+      "training_time_s": 2.9322515000003477,
+      "inference_time_ms": 1.4408000006369548,
+      "batch_inference_time_ms": 727.6626999992004,
+      "batch_amortized_time_ms": 0.1819156749998001,
+      "model_size_mb": 4.341403007507324,
+      "dashboard_update_ms": 6.495100000392995,
+      "dashboard_update_scope": "saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering"
+    },
+    {
+      "algorithm": "Direct AI",
+      "training_time_s": 13.687198300000091,
+      "inference_time_ms": 1.3431000006676186,
+      "batch_inference_time_ms": 4.9515999999130145,
+      "batch_amortized_time_ms": 0.0012378999999782536,
+      "model_size_mb": 0.16312122344970703,
+      "dashboard_update_ms": 6.49980000071082,
+      "dashboard_update_scope": "saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering"
+    },
+    {
+      "algorithm": "Residual AI",
+      "training_time_s": 11.41880889999993,
+      "inference_time_ms": 14.381799999682698,
+      "batch_inference_time_ms": 12300.335899999482,
+      "batch_amortized_time_ms": 3.0750839749998704,
+      "model_size_mb": 207.80677700042725,
+      "dashboard_update_ms": 7.39149999935762,
+      "dashboard_update_scope": "saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering"
+    },
+    {
+      "algorithm": "Residual AI + Kalman",
+      "training_time_s": 11.41880889999993,
+      "inference_time_ms": 13.85130000016943,
+      "batch_inference_time_ms": 13037.293199999112,
+      "batch_amortized_time_ms": 3.259323299999778,
+      "model_size_mb": 207.80734634399414,
+      "dashboard_update_ms": 6.753900001058355,
+      "dashboard_update_scope": "saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering"
+    }
+  ],
+  "timing_policy": "Median after warm-up; one-row latency and batch throughput are separate; dashboard_update_ms is saved-frame data preparation and excludes Streamlit/Plotly rendering."
+}

@@ -1,0 +1,81 @@
+\begin{table*}[t]
+\centering
+\caption{Robustness under simulated RSS noise, wall/NLoS severity, and random or fixed-critical anchor failures.}
+\label{tab:robustness}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & Condition & Mean (m) & P90 (m) & Improve (\%) \\
+\midrule
+Direct AI & anchor\_failure/fixed\_critical: 0.0 & 5.62 & 8.81 & -23.38 \\
+Direct AI & anchor\_failure/fixed\_critical: 1.0 & 8.21 & 12.57 & -73.62 \\
+Direct AI & anchor\_failure/fixed\_critical: 2.0 & 19.14 & 21.84 & -331.36 \\
+Direct AI & anchor\_failure/random: 0.0 & 5.62 & 8.81 & -23.38 \\
+Direct AI & anchor\_failure/random: 1.0 & 7.50 & 11.40 & -54.79 \\
+Direct AI & anchor\_failure/random: 2.0 & 10.87 & 14.89 & -130.45 \\
+Direct AI & anchor\_failure/random: 3.0 & 13.41 & 18.11 & -123.04 \\
+Direct AI & noise: 0.5 & 5.57 & 8.94 & -27.12 \\
+Direct AI & noise: 1.0 & 5.62 & 8.94 & -25.87 \\
+Direct AI & noise: 2.0 & 5.77 & 9.16 & -20.30 \\
+Direct AI & noise: 3.0 & 6.03 & 9.63 & -11.63 \\
+Direct AI & noise: 5.0 & 6.80 & 11.31 & -2.15 \\
+Direct AI & noise: 7.0 & 7.80 & 13.36 & 3.98 \\
+Direct AI & wall\_attenuation: 0.75 & 5.87 & 9.23 & -34.37 \\
+Direct AI & wall\_attenuation: 1.0 & 5.69 & 8.94 & -23.45 \\
+Direct AI & wall\_attenuation: 1.35 & 5.47 & 8.72 & -9.58 \\
+Direct AI & wall\_attenuation: 1.65 & 5.32 & 8.68 & 1.87 \\
+Geometric LS & anchor\_failure/fixed\_critical: 0.0 & 4.57 & 7.06 & 0.00 \\
+Geometric LS & anchor\_failure/fixed\_critical: 1.0 & 4.75 & 8.06 & 0.00 \\
+Geometric LS & anchor\_failure/fixed\_critical: 2.0 & 4.47 & 7.74 & 0.00 \\
+Geometric LS & anchor\_failure/random: 0.0 & 4.57 & 7.06 & 0.00 \\
+Geometric LS & anchor\_failure/random: 1.0 & 5.04 & 8.42 & 0.00 \\
+Geometric LS & anchor\_failure/random: 2.0 & 5.14 & 10.20 & 0.00 \\
+Geometric LS & anchor\_failure/random: 3.0 & 7.15 & 14.13 & 0.00 \\
+Geometric LS & noise: 0.5 & 4.39 & 6.55 & 0.00 \\
+Geometric LS & noise: 1.0 & 4.47 & 6.86 & 0.00 \\
+Geometric LS & noise: 2.0 & 4.80 & 8.03 & 0.00 \\
+Geometric LS & noise: 3.0 & 5.40 & 10.19 & 0.00 \\
+Geometric LS & noise: 5.0 & 6.66 & 12.75 & 0.00 \\
+Geometric LS & noise: 7.0 & 8.12 & 14.55 & 0.00 \\
+Geometric LS & wall\_attenuation: 0.75 & 4.37 & 6.58 & 0.00 \\
+Geometric LS & wall\_attenuation: 1.0 & 4.61 & 7.34 & 0.00 \\
+Geometric LS & wall\_attenuation: 1.35 & 5.00 & 8.51 & 0.00 \\
+Geometric LS & wall\_attenuation: 1.65 & 5.42 & 9.94 & 0.00 \\
+KNN & anchor\_failure/fixed\_critical: 0.0 & 7.52 & 11.59 & -64.97 \\
+KNN & anchor\_failure/fixed\_critical: 1.0 & 9.06 & 11.85 & -91.17 \\
+KNN & anchor\_failure/fixed\_critical: 2.0 & 10.82 & 13.49 & -143.69 \\
+KNN & anchor\_failure/random: 0.0 & 7.52 & 11.59 & -64.97 \\
+KNN & anchor\_failure/random: 1.0 & 9.22 & 12.31 & -89.17 \\
+KNN & anchor\_failure/random: 2.0 & 11.95 & 14.58 & -163.65 \\
+KNN & anchor\_failure/random: 3.0 & 13.91 & 16.36 & -131.08 \\
+KNN & noise: 0.5 & 7.44 & 11.46 & -69.80 \\
+KNN & noise: 1.0 & 7.50 & 11.48 & -68.06 \\
+KNN & noise: 2.0 & 7.72 & 11.85 & -60.85 \\
+KNN & noise: 3.0 & 7.98 & 12.26 & -47.75 \\
+KNN & noise: 5.0 & 8.62 & 13.10 & -29.56 \\
+KNN & noise: 7.0 & 9.40 & 14.28 & -15.71 \\
+KNN & wall\_attenuation: 0.75 & 7.55 & 11.60 & -72.92 \\
+KNN & wall\_attenuation: 1.0 & 7.60 & 11.66 & -65.03 \\
+KNN & wall\_attenuation: 1.35 & 7.67 & 11.72 & -53.67 \\
+KNN & wall\_attenuation: 1.65 & 7.75 & 11.95 & -43.08 \\
+Residual AI & anchor\_failure/fixed\_critical: 0.0 & 7.21 & 10.10 & -58.13 \\
+Residual AI & anchor\_failure/fixed\_critical: 1.0 & 8.30 & 11.55 & -75.20 \\
+Residual AI & anchor\_failure/fixed\_critical: 2.0 & 8.70 & 11.40 & -95.58 \\
+Residual AI & anchor\_failure/random: 0.0 & 7.21 & 10.10 & -58.13 \\
+Residual AI & anchor\_failure/random: 1.0 & 8.09 & 11.24 & -66.29 \\
+Residual AI & anchor\_failure/random: 2.0 & 8.50 & 12.39 & -79.35 \\
+Residual AI & anchor\_failure/random: 3.0 & 9.87 & 13.80 & -52.50 \\
+Residual AI & noise: 0.5 & 7.08 & 9.92 & -61.54 \\
+Residual AI & noise: 1.0 & 7.16 & 10.07 & -60.28 \\
+Residual AI & noise: 2.0 & 7.39 & 10.30 & -53.90 \\
+Residual AI & noise: 3.0 & 7.77 & 10.88 & -43.98 \\
+Residual AI & noise: 5.0 & 8.63 & 12.27 & -29.74 \\
+Residual AI & noise: 7.0 & 9.60 & 14.22 & -18.21 \\
+Residual AI & wall\_attenuation: 0.75 & 7.21 & 10.09 & -65.13 \\
+Residual AI & wall\_attenuation: 1.0 & 7.25 & 10.20 & -57.41 \\
+Residual AI & wall\_attenuation: 1.35 & 7.37 & 10.51 & -47.60 \\
+Residual AI & wall\_attenuation: 1.65 & 7.52 & 10.74 & -38.87 \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize\textit{Note:} Improvement is relative to Geometric LS in the same condition; negative values are retained and indicate degradation.
+\end{table*}

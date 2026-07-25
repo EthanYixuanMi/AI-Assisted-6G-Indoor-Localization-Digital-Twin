@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering
+\caption{Kalman filtering comparison on the same simulated trajectory measurements; these rows are not mixed with point localization.}
+\label{tab:trajectory_filtering}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & Filter variant & Mean (m) & RMSE (m) & P90 (m) \\
+\midrule
+Residual AI & without\_kalman\_filter & 2.12 & 2.90 & 5.32 \\
+Residual AI + Kalman & with\_kalman\_filter & \textbf{2.00} & \textbf{2.70} & \textbf{5.13} \\
+\bottomrule
+\end{tabular}
+\end{table*}

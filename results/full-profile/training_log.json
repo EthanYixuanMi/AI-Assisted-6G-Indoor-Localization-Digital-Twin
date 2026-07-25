@@ -1,0 +1,144 @@
+{
+  "model_schema_version": 1,
+  "config_sha256": "a771dd0c7237b89e01d038f9b30069c4692147bf41eabf9b74eab19cfb6d42c7",
+  "seed": 42,
+  "anchor_ids": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6"
+  ],
+  "anchor_positions": [
+    [
+      1.0,
+      1.0
+    ],
+    [
+      15.0,
+      1.0
+    ],
+    [
+      29.0,
+      1.0
+    ],
+    [
+      29.0,
+      19.0
+    ],
+    [
+      15.0,
+      19.0
+    ],
+    [
+      1.0,
+      19.0
+    ]
+  ],
+  "training_columns": [
+    "true_x",
+    "true_y",
+    "rss_A1",
+    "true_distance_A1",
+    "estimated_distance_A1",
+    "los_A1",
+    "available_A1",
+    "rss_A2",
+    "true_distance_A2",
+    "estimated_distance_A2",
+    "los_A2",
+    "available_A2",
+    "rss_A3",
+    "true_distance_A3",
+    "estimated_distance_A3",
+    "los_A3",
+    "available_A3",
+    "rss_A4",
+    "true_distance_A4",
+    "estimated_distance_A4",
+    "los_A4",
+    "available_A4",
+    "rss_A5",
+    "true_distance_A5",
+    "estimated_distance_A5",
+    "los_A5",
+    "available_A5",
+    "rss_A6",
+    "true_distance_A6",
+    "estimated_distance_A6",
+    "los_A6",
+    "available_A6",
+    "nlos_anchor_count",
+    "anchor_availability_mask",
+    "sample_class",
+    "scenario_name",
+    "trajectory_id",
+    "timestep",
+    "random_seed",
+    "split"
+  ],
+  "knn_best_k": 11,
+  "knn_validation_scores": {
+    "3": 1.627330828190044,
+    "5": 1.577711433900553,
+    "7": 1.5637010635550654,
+    "11": 1.5532987321993972
+  },
+  "direct_ai_best_config": {
+    "hidden_layer_sizes": [
+      96,
+      48
+    ],
+    "alpha": 0.001,
+    "learning_rate_init": 0.001
+  },
+  "direct_ai_validation_scores": [
+    {
+      "config": {
+        "hidden_layer_sizes": [
+          48
+        ],
+        "alpha": 0.0005,
+        "learning_rate_init": 0.002
+      },
+      "mean_error": 1.8288405762137672
+    },
+    {
+      "config": {
+        "hidden_layer_sizes": [
+          96,
+          48
+        ],
+        "alpha": 0.001,
+        "learning_rate_init": 0.001
+      },
+      "mean_error": 1.5645446866008397
+    }
+  ],
+  "residual_estimator": "extra_trees",
+  "residual_validation_scores": {
+    "extra_trees": 1.4922706240389352
+  },
+  "training_time_s": {
+    "Geometric LS": 1.1000010999850929e-06,
+    "KNN": 2.9322515000003477,
+    "Direct AI": 13.687198300000091,
+    "Residual AI": 11.41880889999993,
+    "Residual AI + Kalman": 11.41880889999993
+  },
+  "model_size_mb": {
+    "Geometric LS": 0.0006723403930664062,
+    "KNN": 4.341403007507324,
+    "Direct AI": 0.16312122344970703,
+    "Residual AI": 207.80677700042725,
+    "Residual AI + Kalman": 207.80734634399414
+  },
+  "model_files": {
+    "Geometric LS": "geometric_ls.joblib",
+    "KNN": "knn.joblib",
+    "Direct AI": "direct_ai.joblib",
+    "Residual AI": "residual_ai.joblib",
+    "Residual AI + Kalman": "kalman.joblib"
+  }
+}
