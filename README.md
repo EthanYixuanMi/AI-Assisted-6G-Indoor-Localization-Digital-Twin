@@ -281,8 +281,3 @@ This is a lightweight two-dimensional RSS twin. It does not model a complete
 three-dimensional multipath, dynamic human blockage, or a synchronized
 physical twin. Domain-shift experiments are controlled simulator stress tests,
 not evidence of transfer to a real building.
-
-## Project team
-
-Xin Bao · Chenghao Li · Yuhang Li · Yixuan Mi · Qihan Wu · Yuhan Wang ·
-Chuchen Xu · Tingting Yang
