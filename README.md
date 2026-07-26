@@ -169,13 +169,11 @@ scenarios, so the dashboard works immediately without downloading model
 checkpoints or retraining. Its `manifest.json` records the compact file sizes
 and hashes; `source_run_manifest.json` preserves the original Full-run record.
 
-After creating the GitHub repository, replace `YOUR_GITHUB_USERNAME` in the
-two clone commands below with the repository owner's account name.
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python -m venv .venv
@@ -187,7 +185,7 @@ python -m venv .venv
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python3 -m venv .venv
