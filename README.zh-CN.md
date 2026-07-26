@@ -36,7 +36,7 @@
 仓库把环境生成、RSS 类测量仿真、模型训练、空间留出评估、鲁棒性扫描、
 论文图表和 Streamlit 结果回放连接成一条可复现流水线。
 
-> **范围说明：**仓库中的所有数字和图片都来自纯软件仿真。本项目不声称已经
+> **范围说明：** 仓库中的所有数字和图片都来自纯软件仿真。本项目不声称已经
 > 实现真实 6G 部署、标准化 3GPP 信道或真实建筑定位精度。
 
 ## 一览
@@ -157,13 +157,11 @@ Residual AI 也没有超过主基线。仓库会完整保留这些不利结果�
 其中 `manifest.json` 记录精简文件的实际大小和哈希，
 `source_run_manifest.json` 则保留原始 Full 运行记录。
 
-创建 GitHub 仓库后，请将下面两条 clone 命令中的
-`YOUR_GITHUB_USERNAME` 替换为仓库所有者的账号名。
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python -m venv .venv
@@ -175,7 +173,7 @@ python -m venv .venv
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python3 -m venv .venv
