@@ -18,6 +18,18 @@ models:
     hidden_layer_sizes: [24]
     max_iter: 60
   residual_ai:
-    n_estimators: 24
-    max_depth: 12
-
+    estimator: random_forest
+    feature_groups:
+      - rss
+      - distance
+      - residual
+      - available_count
+      - mask
+      - nlos
+      - los
+    n_estimators: 7
+    max_depth: 6
+    min_samples_leaf: 3
+    max_features: 0.5
+    correction_scale: 0.0
+    correction_cap_quantile: 0.5
