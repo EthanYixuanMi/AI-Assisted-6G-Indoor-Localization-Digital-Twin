@@ -9,9 +9,9 @@
 | Field | Value |
 |---|---|
 | Profile | `full` |
-| Source directory | `qa/full_20260726_010859` |
+| Source directory | `qa/residual_optimization/full_scale050_cap090_20260727` |
 | Success | `true` |
-| Duration | 1,380.49 seconds |
+| Duration | 1,965.82 seconds |
 | Root seed | 42 |
 | Evaluation seeds | 42, 123, 2026, 31415, 27182 |
 | Python | 3.12.4 |
@@ -20,6 +20,11 @@
 The source run passed its internal 50-file output contract. Its original
 `manifest.json` is retained here as provenance, even though this GitHub
 package intentionally excludes several large, regenerable artifacts.
+
+This run uses the optimized Residual AI policy shipped in the current source:
+the learned correction is scaled by `0.5`, and its norm is capped at the
+training-residual `0.90` quantile. Each seed learns its cap from its own
+training split; the spatial holdout is not used for this threshold.
 
 For privacy and portability, the four machine-specific `_meta` paths in each
 packaged `config_resolved.yaml` were rewritten as repository-relative paths.
@@ -57,8 +62,10 @@ It is for interactive demonstration, not for recomputing the aggregate tables.
 
 - `tables/main_results.csv` aggregates five independently generated and trained
   spatial-holdout runs.
-- `figures/error_cdf.*` uses the saved seed-42 spatial-holdout realization and
-  is not a five-seed pooled CDF.
+- `figures/error_cdf.*` uses the root-run seed-42 spatial-holdout realization.
+  The independently regenerated five-seed aggregation uses separate
+  measurement realizations, so the CDF is neither pooled nor a row from that
+  aggregate.
 - Robustness sweeps keep the root-seed model fixed and vary measurement seeds.
 - The combined anchor-failure panel pools random and fixed-critical protocols
   at overlapping failure counts; use `robustness_results.csv` for separate rows.
@@ -78,9 +85,9 @@ python scripts/run_pipeline.py --profile full
 | 字段 | 数值 |
 |---|---|
 | Profile | `full` |
-| 来源目录 | `qa/full_20260726_010859` |
+| 来源目录 | `qa/residual_optimization/full_scale050_cap090_20260727` |
 | 成功状态 | `true` |
-| 耗时 | 1,380.49 秒 |
+| 耗时 | 1,965.82 秒 |
 | Root seed | 42 |
 | Evaluation seeds | 42、123、2026、31415、27182 |
 | Python | 3.12.4 |
@@ -88,6 +95,10 @@ python scripts/run_pipeline.py --profile full
 
 来源运行通过了内部 50 文件输出契约。这里保留原始 `manifest.json` 作为追溯，
 但 GitHub 发布包有意排除了可重新生成的大文件。
+
+本次运行使用当前源码中的优化 Residual AI 策略：学习到的修正量乘以 `0.5`，
+并将修正向量范数限制在训练残差的 `0.90` 分位数以内。每个 seed 都只使用
+自己的训练集计算 cap，不使用空间留出测试集。
 
 为保护隐私并提高可移植性，两份公开 `config_resolved.yaml` 中各有四个本机
 `_meta` 路径被改写为仓库相对路径，所有科学参数均未变化。因此，原始可视化
@@ -122,7 +133,9 @@ manifest 中记录的配置哈希对应未公开的源运行副本；本目录�
 ### 证据边界
 
 - `tables/main_results.csv` 聚合五次独立数据生成和训练后的空间留出结果；
-- `figures/error_cdf.*` 只对应 seed 42，不是五 seed pooled CDF；
+- `figures/error_cdf.*` 使用 root run 的 seed-42 空间留出 realization；
+  五-seed 聚合使用独立重生成的 measurement realization，因此该 CDF 既不是
+  pooled CDF，也不对应聚合表中的某一行；
 - 鲁棒性扫描固定 root-seed 模型，只改变 measurement seed；
 - 组合锚点失效图在相同 failure count 处合并 random 和 fixed-critical，
   精确分离结果应读取 `robustness_results.csv`；

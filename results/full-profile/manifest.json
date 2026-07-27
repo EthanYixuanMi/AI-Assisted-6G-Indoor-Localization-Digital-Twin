@@ -1,8 +1,8 @@
 {
   "success": true,
-  "started_at": "2026-07-25T17:09:41.410944+00:00",
-  "finished_at": "2026-07-25T17:32:41.893059+00:00",
-  "duration_s": 1380.4934656000005,
+  "started_at": "2026-07-27T03:02:57.742612+00:00",
+  "finished_at": "2026-07-27T03:35:43.559391+00:00",
+  "duration_s": 1965.8210062999997,
   "profile": "full",
   "seed": 42,
   "config_file": "config/full.yaml",
@@ -45,47 +45,47 @@
   "files": [
     {
       "path": "ablation_results.csv",
-      "size_bytes": 4139
+      "size_bytes": 4135
     },
     {
       "path": "config_resolved.yaml",
-      "size_bytes": 5485
+      "size_bytes": 5594
     },
     {
       "path": "data/ablation_results.csv",
-      "size_bytes": 4139
+      "size_bytes": 4135
     },
     {
       "path": "data/ablation_results_source.csv",
-      "size_bytes": 3094
+      "size_bytes": 3089
     },
     {
       "path": "data/dashboard_anchor_failure_source.csv",
-      "size_bytes": 488165
+      "size_bytes": 488205
     },
     {
       "path": "data/dashboard_domain_shift_source.csv",
-      "size_bytes": 582771
+      "size_bytes": 582808
     },
     {
       "path": "data/dashboard_high_noise_source.csv",
-      "size_bytes": 586677
+      "size_bytes": 586697
     },
     {
       "path": "data/dashboard_normal_source.csv",
-      "size_bytes": 588712
+      "size_bytes": 588686
     },
     {
       "path": "data/dashboard_overview_source.csv",
-      "size_bytes": 588712
+      "size_bytes": 588686
     },
     {
       "path": "data/dashboard_strong_blockage_source.csv",
-      "size_bytes": 589417
+      "size_bytes": 589333
     },
     {
       "path": "data/error_cdf_source.csv",
-      "size_bytes": 10426989
+      "size_bytes": 10428669
     },
     {
       "path": "data/los_nlos_comparison_source.csv",
@@ -93,43 +93,43 @@
     },
     {
       "path": "data/metrics.csv",
-      "size_bytes": 13471
+      "size_bytes": 13431
     },
     {
       "path": "data/per_sample_predictions.csv",
-      "size_bytes": 59274657
+      "size_bytes": 59279940
     },
     {
       "path": "data/per_seed_results.csv",
-      "size_bytes": 11660
+      "size_bytes": 11621
     },
     {
       "path": "data/robustness_anchor_failure_source.csv",
-      "size_bytes": 62050
+      "size_bytes": 61896
     },
     {
       "path": "data/robustness_noise_source.csv",
-      "size_bytes": 50865
+      "size_bytes": 50704
     },
     {
       "path": "data/robustness_results.csv",
-      "size_bytes": 148929
+      "size_bytes": 148495
     },
     {
       "path": "data/robustness_results_source.csv",
-      "size_bytes": 112468
+      "size_bytes": 112153
     },
     {
       "path": "data/runtime_comparison_source.csv",
-      "size_bytes": 1180
+      "size_bytes": 1177
     },
     {
       "path": "data/runtime_results.csv",
-      "size_bytes": 1198
+      "size_bytes": 1195
     },
     {
       "path": "data/spatial_error_heatmaps_source.csv",
-      "size_bytes": 11834080
+      "size_bytes": 11835713
     },
     {
       "path": "data/splits/anchor_failure.csv",
@@ -169,11 +169,11 @@
     },
     {
       "path": "data/trajectory_comparison_source.csv",
-      "size_bytes": 588712
+      "size_bytes": 588686
     },
     {
       "path": "data/visual_asset_manifest.json",
-      "size_bytes": 4326
+      "size_bytes": 4335
     },
     {
       "path": "environment.json",
@@ -181,23 +181,23 @@
     },
     {
       "path": "figures/ablation_results.pdf",
-      "size_bytes": 14370
+      "size_bytes": 14854
     },
     {
       "path": "figures/ablation_results.png",
-      "size_bytes": 68467
+      "size_bytes": 79930
     },
     {
       "path": "figures/dashboard_overview.png",
-      "size_bytes": 645795
+      "size_bytes": 682825
     },
     {
       "path": "figures/error_cdf.pdf",
-      "size_bytes": 48308
+      "size_bytes": 47253
     },
     {
       "path": "figures/error_cdf.png",
-      "size_bytes": 91934
+      "size_bytes": 94971
     },
     {
       "path": "figures/los_nlos_comparison.pdf",
@@ -205,47 +205,47 @@
     },
     {
       "path": "figures/los_nlos_comparison.png",
-      "size_bytes": 84567
+      "size_bytes": 84459
     },
     {
       "path": "figures/robustness_anchor_failure.pdf",
-      "size_bytes": 15458
+      "size_bytes": 15470
     },
     {
       "path": "figures/robustness_anchor_failure.png",
-      "size_bytes": 100124
+      "size_bytes": 100997
     },
     {
       "path": "figures/robustness_noise.pdf",
-      "size_bytes": 15447
+      "size_bytes": 15495
     },
     {
       "path": "figures/robustness_noise.png",
-      "size_bytes": 109741
+      "size_bytes": 111933
     },
     {
       "path": "figures/robustness_results.pdf",
-      "size_bytes": 18766
+      "size_bytes": 18798
     },
     {
       "path": "figures/robustness_results.png",
-      "size_bytes": 188448
+      "size_bytes": 192375
     },
     {
       "path": "figures/runtime_comparison.pdf",
-      "size_bytes": 21325
+      "size_bytes": 20755
     },
     {
       "path": "figures/runtime_comparison.png",
-      "size_bytes": 132497
+      "size_bytes": 126094
     },
     {
       "path": "figures/spatial_error_heatmaps.pdf",
-      "size_bytes": 29819
+      "size_bytes": 29588
     },
     {
       "path": "figures/spatial_error_heatmaps.png",
-      "size_bytes": 517924
+      "size_bytes": 518577
     },
     {
       "path": "figures/system_architecture.svg",
@@ -253,11 +253,11 @@
     },
     {
       "path": "figures/trajectory_comparison.pdf",
-      "size_bytes": 28499
+      "size_bytes": 28406
     },
     {
       "path": "figures/trajectory_comparison.png",
-      "size_bytes": 207503
+      "size_bytes": 210436
     },
     {
       "path": "latex/preliminary_results_snippet.tex",
@@ -265,7 +265,7 @@
     },
     {
       "path": "latex/table_ablation.tex",
-      "size_bytes": 679
+      "size_bytes": 675
     },
     {
       "path": "latex/table_los_nlos.tex",
@@ -273,15 +273,15 @@
     },
     {
       "path": "latex/table_main_results.tex",
-      "size_bytes": 924
+      "size_bytes": 923
     },
     {
       "path": "latex/table_robustness.tex",
-      "size_bytes": 4672
+      "size_bytes": 4639
     },
     {
       "path": "latex/table_runtime.tex",
-      "size_bytes": 957
+      "size_bytes": 958
     },
     {
       "path": "latex/table_simulation_parameters.tex",
@@ -293,11 +293,11 @@
     },
     {
       "path": "logs/pipeline.log",
-      "size_bytes": 82456
+      "size_bytes": 82556
     },
     {
       "path": "metrics.csv",
-      "size_bytes": 13471
+      "size_bytes": 13431
     },
     {
       "path": "models/direct_ai.joblib",
@@ -317,11 +317,11 @@
     },
     {
       "path": "models/metadata.json",
-      "size_bytes": 2954
+      "size_bytes": 4151
     },
     {
       "path": "models/residual_ai.joblib",
-      "size_bytes": 217901199
+      "size_bytes": 217901290
     },
     {
       "path": "models/seed_123/dataset_metadata.json",
@@ -345,11 +345,11 @@
     },
     {
       "path": "models/seed_123/metadata.json",
-      "size_bytes": 2957
+      "size_bytes": 4154
     },
     {
       "path": "models/seed_123/residual_ai.joblib",
-      "size_bytes": 215922479
+      "size_bytes": 215922570
     },
     {
       "path": "models/seed_2026/dataset_metadata.json",
@@ -373,11 +373,11 @@
     },
     {
       "path": "models/seed_2026/metadata.json",
-      "size_bytes": 2955
+      "size_bytes": 4155
     },
     {
       "path": "models/seed_2026/residual_ai.joblib",
-      "size_bytes": 218591919
+      "size_bytes": 218592010
     },
     {
       "path": "models/seed_27182/dataset_metadata.json",
@@ -401,11 +401,11 @@
     },
     {
       "path": "models/seed_27182/metadata.json",
-      "size_bytes": 2959
+      "size_bytes": 4156
     },
     {
       "path": "models/seed_27182/residual_ai.joblib",
-      "size_bytes": 217092879
+      "size_bytes": 217092970
     },
     {
       "path": "models/seed_31415/dataset_metadata.json",
@@ -429,59 +429,59 @@
     },
     {
       "path": "models/seed_31415/metadata.json",
-      "size_bytes": 2957
+      "size_bytes": 4155
     },
     {
       "path": "models/seed_31415/residual_ai.joblib",
-      "size_bytes": 218700399
+      "size_bytes": 218700490
     },
     {
       "path": "per_sample_predictions.csv",
-      "size_bytes": 59274657
+      "size_bytes": 59279940
     },
     {
       "path": "per_seed_results.csv",
-      "size_bytes": 11660
+      "size_bytes": 11621
     },
     {
       "path": "REPORT_RESULTS_DRAFT.md",
-      "size_bytes": 2482
+      "size_bytes": 2477
     },
     {
       "path": "RESULTS_SUMMARY.md",
-      "size_bytes": 1708
+      "size_bytes": 1705
     },
     {
       "path": "robustness_results.csv",
-      "size_bytes": 148929
+      "size_bytes": 148495
     },
     {
       "path": "runtime.json",
-      "size_bytes": 2534
+      "size_bytes": 2531
     },
     {
       "path": "runtime_results.csv",
-      "size_bytes": 1198
+      "size_bytes": 1195
     },
     {
       "path": "screenshots/dashboard_anchor_failure.png",
-      "size_bytes": 931606
+      "size_bytes": 893181
     },
     {
       "path": "screenshots/dashboard_domain_shift.png",
-      "size_bytes": 860035
+      "size_bytes": 869591
     },
     {
       "path": "screenshots/dashboard_high_noise.png",
-      "size_bytes": 962040
+      "size_bytes": 960280
     },
     {
       "path": "screenshots/dashboard_normal.png",
-      "size_bytes": 644379
+      "size_bytes": 681444
     },
     {
       "path": "screenshots/dashboard_strong_blockage.png",
-      "size_bytes": 712798
+      "size_bytes": 707081
     },
     {
       "path": "seeds.json",
@@ -489,27 +489,27 @@
     },
     {
       "path": "tables/ablation_results.csv",
-      "size_bytes": 4124
+      "size_bytes": 4125
     },
     {
       "path": "tables/los_nlos_results.csv",
-      "size_bytes": 611
+      "size_bytes": 613
     },
     {
       "path": "tables/main_results.csv",
-      "size_bytes": 2278
+      "size_bytes": 2276
     },
     {
       "path": "tables/per_seed_results.csv",
-      "size_bytes": 11590
+      "size_bytes": 11539
     },
     {
       "path": "tables/robustness_results.csv",
-      "size_bytes": 148045
+      "size_bytes": 147606
     },
     {
       "path": "tables/runtime_results.csv",
-      "size_bytes": 1186
+      "size_bytes": 1183
     },
     {
       "path": "tables/simulation_parameters.csv",
@@ -517,12 +517,13 @@
     },
     {
       "path": "tables/trajectory_filtering_results.csv",
-      "size_bytes": 1546
+      "size_bytes": 1552
     },
     {
       "path": "training_log.json",
-      "size_bytes": 2954
+      "size_bytes": 4151
     }
   ],
-  "published_to_repository_latest": false
+  "published_to_repository_latest": false,
+  "visual_assets_regenerated_after_label_qa": true
 }

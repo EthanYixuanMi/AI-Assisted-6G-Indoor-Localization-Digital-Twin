@@ -7,23 +7,23 @@ environment and do not establish accuracy in a physical 6G deployment.
 ## 1. Overall Localization Accuracy
 
 Across independent simulation and training seeds in the Normal spatial holdout,
-**Direct AI** achieved the lowest
-mean Euclidean localization error of **4.27 m**, with an
-RMSE of **4.74 m**, a median error of
-**4.08 m**, and a 90th-percentile error of
-**6.82 m**. The Geometric LS baseline obtained a mean error
+**Residual AI** achieved the lowest
+mean Euclidean localization error of **3.90 m**, with an
+RMSE of **4.88 m**, a median error of
+**3.29 m**, and a 90th-percentile error of
+**7.97 m**. The Geometric LS baseline obtained a mean error
 of **5.36 m**. Relative to that baseline, Residual AI
-increased the mean error by **36.0%**
-(5.36 m versus 7.29 m).
+reduced the mean error by **27.1%**
+(5.36 m versus 3.90 m).
 This comparison is conditional on the spatial holdout protocol and the
 simulator parameters saved with the run.
 
 ## 2. LoS and NLoS Performance
 
 The lowest simulated LoS mean error was produced by
-**Geometric LS** at **3.67 m**. Under the
-NLoS definition used by the twin, **Direct AI** obtained the lowest
-mean error of **4.25 m**. The separation between
+**Residual AI** at **3.05 m**. Under the
+NLoS definition used by the twin, **Residual AI** obtained the lowest
+mean error of **4.13 m**. The separation between
 LoS and NLoS results confirms that wall-induced, non-zero bias is a materially
 harder condition than unblocked propagation in this simulation. These labels
 are derived from geometric path intersections rather than measured radio
@@ -34,17 +34,17 @@ ground truth.
 The robustness sweep retained every tested method even when performance
 degraded. At the largest tested RSS-noise level
 (**7.0 dB**), the lowest seed-averaged mean error was
-**7.80 m** for
-**Direct AI**, with a P90 error of
-**13.36 m**. For fixed_critical failures at 2 unavailable anchors, Geometric LS had the lowest seed-averaged mean error (4.47 m); For random failures at 3 unavailable anchors, Geometric LS had the lowest seed-averaged mean error (7.15 m). The domain-shift rows in
+**7.18 m** for
+**Residual AI**, with a P90 error of
+**13.53 m**. For fixed_critical failures at 2 unavailable anchors, Residual AI had the lowest seed-averaged mean error (4.21 m); For random failures at 3 unavailable anchors, Residual AI had the lowest seed-averaged mean error (6.58 m). The domain-shift rows in
 `metrics.csv` should be interpreted as a stress test of simulator mismatch, not
 as evidence of transfer to a real building.
 
 ## 4. Runtime and Demonstration Performance
 
 After warm-up, the lowest measured one-row inference time was
-**1.343 ms** for
-**Direct AI** on the execution machine. Model training time,
+**1.612 ms** for
+**KNN** on the execution machine. Model training time,
 batch prediction time, amortized batch throughput, serialized size, and the
 saved-frame data-preparation proxy are reported separately in
 `table_runtime.tex`. The proxy excludes Streamlit and Plotly rendering. These

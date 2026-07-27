@@ -31,26 +31,26 @@
       "source_file": "per_sample_predictions.csv"
     }
   },
-  "generated_at_utc": "2026-07-25T17:32:41+00:00",
+  "generated_at_utc": "2026-07-27T03:38:04+00:00",
   "generated_files": [
     {
-      "bytes": 14370,
+      "bytes": 14854,
       "path": "figures/ablation_results.pdf"
     },
     {
-      "bytes": 68467,
+      "bytes": 79930,
       "path": "figures/ablation_results.png"
     },
     {
-      "bytes": 645795,
+      "bytes": 682825,
       "path": "figures/dashboard_overview.png"
     },
     {
-      "bytes": 48308,
+      "bytes": 47253,
       "path": "figures/error_cdf.pdf"
     },
     {
-      "bytes": 91934,
+      "bytes": 94971,
       "path": "figures/error_cdf.png"
     },
     {
@@ -58,47 +58,47 @@
       "path": "figures/los_nlos_comparison.pdf"
     },
     {
-      "bytes": 84567,
+      "bytes": 84459,
       "path": "figures/los_nlos_comparison.png"
     },
     {
-      "bytes": 15458,
+      "bytes": 15470,
       "path": "figures/robustness_anchor_failure.pdf"
     },
     {
-      "bytes": 100124,
+      "bytes": 100997,
       "path": "figures/robustness_anchor_failure.png"
     },
     {
-      "bytes": 15447,
+      "bytes": 15495,
       "path": "figures/robustness_noise.pdf"
     },
     {
-      "bytes": 109741,
+      "bytes": 111933,
       "path": "figures/robustness_noise.png"
     },
     {
-      "bytes": 18766,
+      "bytes": 18798,
       "path": "figures/robustness_results.pdf"
     },
     {
-      "bytes": 188448,
+      "bytes": 192375,
       "path": "figures/robustness_results.png"
     },
     {
-      "bytes": 21325,
+      "bytes": 20755,
       "path": "figures/runtime_comparison.pdf"
     },
     {
-      "bytes": 132497,
+      "bytes": 126094,
       "path": "figures/runtime_comparison.png"
     },
     {
-      "bytes": 29819,
+      "bytes": 29588,
       "path": "figures/spatial_error_heatmaps.pdf"
     },
     {
-      "bytes": 517924,
+      "bytes": 518577,
       "path": "figures/spatial_error_heatmaps.png"
     },
     {
@@ -106,64 +106,64 @@
       "path": "figures/system_architecture.svg"
     },
     {
-      "bytes": 28499,
+      "bytes": 28406,
       "path": "figures/trajectory_comparison.pdf"
     },
     {
-      "bytes": 207503,
+      "bytes": 210436,
       "path": "figures/trajectory_comparison.png"
     },
     {
-      "bytes": 931606,
+      "bytes": 893181,
       "path": "screenshots/dashboard_anchor_failure.png"
     },
     {
-      "bytes": 860035,
+      "bytes": 869591,
       "path": "screenshots/dashboard_domain_shift.png"
     },
     {
-      "bytes": 962040,
+      "bytes": 960280,
       "path": "screenshots/dashboard_high_noise.png"
     },
     {
-      "bytes": 644379,
+      "bytes": 681444,
       "path": "screenshots/dashboard_normal.png"
     },
     {
-      "bytes": 712798,
+      "bytes": 707081,
       "path": "screenshots/dashboard_strong_blockage.png"
     }
   ],
   "no_fabricated_fallback_data": true,
-  "source_directory": "full_20260726_010859",
+  "source_directory": "full_scale050_cap090_20260727",
   "source_files": {
     "ablation_results.csv": {
-      "bytes": 4139,
-      "sha256": "9cc9215f14850a2a51422babd2fbc201efece9662de3f3f5fa396b2afd78b371"
+      "bytes": 4135,
+      "sha256": "9ec1492a7f2d27750e8d3484b8e25ba17f1ab5b6d05adade2046cedc8de590d2"
     },
     "config_resolved.yaml": {
-      "bytes": 5485,
-      "sha256": "1a745588413abbfd4ed2eb2eabe5d5ac9163f7320c3e6205c15ccddac34bf7ad"
+      "bytes": 5594,
+      "sha256": "3cc1678a22e595f83ff203321fb05a5f0e603c95e746bb5408fb31fbfb250878"
     },
     "environment.json": {
       "bytes": 3248,
       "sha256": "f8b2e0bbc34d0c2953adbbe886743de5d9330ff50ee21ee8181aa5d68ee982a9"
     },
     "metrics.csv": {
-      "bytes": 13471,
-      "sha256": "d25c4d30d9bd3e994a291c6ab888be9a0ccfdc3b93669c2d7f619ecf602e282a"
+      "bytes": 13431,
+      "sha256": "754f6b5a9839ef0cc4a220a1a3c946be3c54a96b3751ed5d7a16f8799b6583eb"
     },
     "per_sample_predictions.csv": {
-      "bytes": 59274657,
-      "sha256": "675c9e73ab43b2bb769248b0fdd05a78025f7148a90e15bb66bd6717b46d3a7c"
+      "bytes": 59279940,
+      "sha256": "1fe74dced17e622086edd5dbad55a2f8c440dd93455a346eedfe61549d86804c"
     },
     "robustness_results.csv": {
-      "bytes": 148929,
-      "sha256": "e48725fed42d59d873f74bcd633d2ccaf0e8c6d5962147ed071b3ba792651853"
+      "bytes": 148495,
+      "sha256": "c9573983bbba0735175f9f91a6a9881322b772fd2bc0e87a192bcdfa50b1ead6"
     },
     "runtime_results.csv": {
-      "bytes": 1198,
-      "sha256": "31c1d464eae6192d0f04cd1b6ef869ed51544f5fc3a3cebc2f97855dad1aaf2a"
+      "bytes": 1195,
+      "sha256": "7f90b7b0d056a71f6a6a0990e2a7ad22009b14be89e0f967bdda95048e6ef9dd"
     }
   }
 }

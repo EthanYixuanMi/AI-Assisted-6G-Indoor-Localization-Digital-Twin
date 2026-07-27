@@ -1,6 +1,6 @@
 {
-  "model_schema_version": 1,
-  "config_sha256": "a771dd0c7237b89e01d038f9b30069c4692147bf41eabf9b74eab19cfb6d42c7",
+  "model_schema_version": 2,
+  "config_sha256": "8dfe636ebb7ad940dd057249722d611f12635237637082a43c31801e5a32af2f",
   "seed": 42,
   "anchor_ids": [
     "A1",
@@ -118,21 +118,73 @@
   ],
   "residual_estimator": "extra_trees",
   "residual_validation_scores": {
-    "extra_trees": 1.4922706240389352
+    "extra_trees": 3.883734939974151
+  },
+  "residual_ai_config": {
+    "configured_estimator": "extra_trees",
+    "selected_estimator": "extra_trees",
+    "feature_groups": [
+      "rss",
+      "distance",
+      "geometric",
+      "residual",
+      "available_count",
+      "mask",
+      "nlos",
+      "los"
+    ],
+    "feature_names": [
+      "rss_A1",
+      "rss_A2",
+      "rss_A3",
+      "rss_A4",
+      "rss_A5",
+      "rss_A6",
+      "estimated_distance_A1",
+      "estimated_distance_A2",
+      "estimated_distance_A3",
+      "estimated_distance_A4",
+      "estimated_distance_A5",
+      "estimated_distance_A6",
+      "geometric_x",
+      "geometric_y",
+      "residual_cost",
+      "available_count",
+      "available_A1",
+      "available_A2",
+      "available_A3",
+      "available_A4",
+      "available_A5",
+      "available_A6",
+      "nlos_anchor_count",
+      "los_A1",
+      "los_A2",
+      "los_A3",
+      "los_A4",
+      "los_A5",
+      "los_A6"
+    ],
+    "n_estimators": 200,
+    "max_depth": 18,
+    "min_samples_leaf": 2,
+    "max_features": 1.0,
+    "correction_scale": 0.5,
+    "correction_cap_quantile": 0.9,
+    "learned_correction_cap": 13.611799958979077
   },
   "training_time_s": {
-    "Geometric LS": 1.1000010999850929e-06,
-    "KNN": 2.9322515000003477,
-    "Direct AI": 13.687198300000091,
-    "Residual AI": 11.41880889999993,
-    "Residual AI + Kalman": 11.41880889999993
+    "Geometric LS": 2.099999619531445e-06,
+    "KNN": 4.893909000000349,
+    "Direct AI": 20.88412470000003,
+    "Residual AI": 16.251457800000026,
+    "Residual AI + Kalman": 16.251457800000026
   },
   "model_size_mb": {
     "Geometric LS": 0.0006723403930664062,
     "KNN": 4.341403007507324,
     "Direct AI": 0.16312122344970703,
-    "Residual AI": 207.80677700042725,
-    "Residual AI + Kalman": 207.80734634399414
+    "Residual AI": 207.80686378479004,
+    "Residual AI + Kalman": 207.80743312835693
   },
   "model_files": {
     "Geometric LS": "geometric_ls.joblib",
