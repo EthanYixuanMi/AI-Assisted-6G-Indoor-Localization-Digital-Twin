@@ -189,6 +189,8 @@ def test_residual_ai_corrects_and_round_trips(estimator: str) -> None:
         estimator=estimator,
         n_estimators=24,
         max_depth=8,
+        correction_scale=0.5,
+        correction_cap_quantile=0.9,
         random_state=4,
     )
     model.fit(
@@ -203,11 +205,91 @@ def test_residual_ai_corrects_and_round_trips(estimator: str) -> None:
     path = model.save(artifact_path(f"{estimator}.joblib"))
     try:
         loaded = ResidualAILocator.load(path)
+        assert loaded.correction_scale == 0.5
+        assert loaded.correction_cap_quantile == 0.9
+        assert loaded.correction_cap_ == model.correction_cap_
         np.testing.assert_allclose(
             loaded.predict(test, geometric_test), prediction, rtol=0.0, atol=0.0
         )
     finally:
         path.unlink(missing_ok=True)
+
+
+def test_residual_ai_zero_scale_exactly_falls_back_to_geometric() -> None:
+    train = synthetic_frame(80, seed=30, distance_bias=2.0)
+    test = synthetic_frame(20, seed=31, distance_bias=2.0)
+    geometric_locator = GeometricLocator(ANCHORS)
+    geometric_train = geometric_locator.predict_details(train)
+    geometric_test = geometric_locator.predict_details(test)
+    model = ResidualAILocator(
+        ANCHOR_IDS,
+        n_estimators=16,
+        max_depth=6,
+        correction_scale=0.0,
+        correction_cap_quantile=0.9,
+        random_state=5,
+    )
+    model.fit(train, geometric_train)
+
+    expected = geometric_test[["geometric_x", "geometric_y"]].to_numpy()
+    np.testing.assert_array_equal(model.predict(test, geometric_test), expected)
+
+
+def test_residual_ai_cap_uses_training_targets_only() -> None:
+    train = synthetic_frame(4, seed=32)
+    validation = synthetic_frame(2, seed=33)
+    geometric = pd.DataFrame(
+        {
+            "geometric_x": np.zeros(4),
+            "geometric_y": np.zeros(4),
+        }
+    )
+    geometric_validation = pd.DataFrame(
+        {
+            "geometric_x": np.zeros(2),
+            "geometric_y": np.zeros(2),
+        }
+    )
+    residual_targets = np.asarray(
+        [[1.0, 0.0], [2.0, 0.0], [3.0, 0.0], [4.0, 0.0]]
+    )
+    model = ResidualAILocator(
+        ANCHOR_IDS,
+        feature_groups=("geometric",),
+        n_estimators=8,
+        max_depth=4,
+        correction_scale=0.4,
+        correction_cap_quantile=0.5,
+        random_state=6,
+    )
+    model.fit(
+        train,
+        geometric,
+        y=residual_targets,
+        validation_frame=validation,
+        validation_geometric=geometric_validation,
+        y_validation=np.asarray([[100.0, 0.0], [200.0, 0.0]]),
+    )
+
+    assert model.correction_cap_ == pytest.approx(2.5)
+    bounded = model._apply_correction_policy([[100.0, 0.0]])
+    assert np.linalg.norm(bounded[0]) == pytest.approx(1.0)
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    (
+        {"correction_scale": -0.01},
+        {"correction_scale": 1.01},
+        {"correction_cap_quantile": 0.0},
+        {"correction_cap_quantile": 1.01},
+    ),
+)
+def test_residual_ai_rejects_invalid_correction_policy(
+    kwargs: dict[str, float],
+) -> None:
+    with pytest.raises(ValueError):
+        ResidualAILocator(ANCHOR_IDS, **kwargs)
 
 
 def test_geometric_save_load_is_identical() -> None:
