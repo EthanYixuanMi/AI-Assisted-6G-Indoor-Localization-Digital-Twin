@@ -182,13 +182,12 @@ Residual AI 使用当前的 50% 修正比例，以及仅由训练集确定的第
 其中 `manifest.json` 记录精简文件的实际大小和哈希，
 `source_run_manifest.json` 则保留原始 Full 运行记录。
 
-创建 GitHub 仓库后，请将下面两条 clone 命令中的
-`YOUR_GITHUB_USERNAME` 替换为仓库所有者的账号名。
+请根据操作系统使用以下命令，从 `EthanYixuanMi` 的 GitHub 仓库克隆项目。
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python -m venv .venv
@@ -200,7 +199,7 @@ python -m venv .venv
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python3 -m venv .venv
