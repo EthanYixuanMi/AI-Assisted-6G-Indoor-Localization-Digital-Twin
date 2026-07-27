@@ -208,6 +208,10 @@ models:
     estimator: extra_trees
     n_estimators: 120
     max_depth: 18
+    min_samples_leaf: 2
+    max_features: 1.0
+    correction_scale: 0.5
+    correction_cap_quantile: 0.90
   kalman:
     process_noise: 0.08
     measurement_noise: 1.0
