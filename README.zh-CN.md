@@ -125,29 +125,30 @@
 seed 42 和 123 用作开发诊断；未参与策略选择的 seed 2026 也从 7.088 m
 降至 3.884 m，改善 **45.2%**。
 
-## 归档的 Full Profile 结果（优化前）
+## 优化后 Residual AI 的 Full Profile 结果
 
 下表聚合 5 次独立数据生成和模型训练，每个 seed 使用 4,000 个空间留出样本。
-这些结果生成于信任域优化之前，现保留为可审计基线；正式引用优化后模型的
-Full-profile 指标前，需要重新运行 Full profile。
+Residual AI 使用当前的 50% 修正比例，以及仅由训练集确定的第 90 百分位上限。
 
 | 方法 | 平均误差 (m) | RMSE (m) | 中位数 (m) | P90 (m) | 单行预热推理 (ms) |
 |---|---:|---:|---:|---:|---:|
-| Geometric LS | 5.36 | 6.16 | 4.81 | 9.58 | 2.72 |
-| KNN | 7.43 | 7.92 | 7.11 | 11.08 | 1.44 |
-| **Direct AI** | **4.27** | **4.74** | **4.08** | **6.82** | **1.34** |
-| Residual AI | 7.29 | 7.75 | 7.08 | 10.39 | 14.38 |
+| Geometric LS | 5.36 | 6.16 | 4.81 | 9.58 | 5.19 |
+| KNN | 7.43 | 7.92 | 7.11 | 11.08 | **1.61** |
+| Direct AI | 4.27 | **4.74** | 4.08 | **6.82** | 3.77 |
+| **Residual AI** | **3.90** | 4.88 | **3.29** | 7.97 | 25.50 |
 
-在这一特定协议下，Direct AI 相对 Geometric LS 将平均误差降低了
-**20.4%**。但该排序并不普适：关键锚点失效时 Geometric LS 更稳健，
-优化前的 Residual AI 也没有超过主基线。仓库会完整保留这些不利结果。
+优化后的 Residual AI 相对 Geometric LS 将平均误差降低 **27.1%**，
+相对 Direct AI 降低 **8.5%**；它在 5 个 seed 上取得最优的平均误差、
+中位数误差、LoS 误差和 NLoS 误差。Direct AI 仍具有最优 RMSE 和 P90，
+且速度更快、模型更小，因此该精度提升伴随明确的部署成本。
 
 <table>
   <tr>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/error_cdf.png" alt="定位误差 CDF"><br>
       <strong>误差 CDF</strong><br>
-      seed 42 的空间留出诊断图，并非五个 seed 合并后的 CDF。
+      root-seed 空间留出诊断图；它既不是五个 seed 合并后的 CDF，也不对应
+      独立重生成的五-seed 聚合表中的某一行。
     </td>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/robustness_results.png" alt="鲁棒性结果"><br>
@@ -160,8 +161,8 @@ Full-profile 指标前，需要重新运行 Full profile。
     <td width="50%" align="center">
       <img src="results/full-profile/figures/ablation_results.png" alt="Residual 模型消融"><br>
       <strong>消融实验</strong><br>
-      LoS/NLoS 特征对保存的 residual 模型有帮助，而 spatial-bias training
-      没有带来收益。
+      LoS/NLoS 特征对优化后的 residual 模型有帮助；在这一 seed 42
+      消融中，移除 spatial-bias training 后误差略有降低。
     </td>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/runtime_comparison.png" alt="运行时间比较"><br>

@@ -135,32 +135,32 @@ under this Quick-profile protocol. Per-seed values are available in
 Seeds 42 and 123 served as development diagnostics; the untouched seed 2026
 also improved from 7.088 m to 3.884 m (**45.2%**).
 
-## Archived full-profile results (pre-optimization)
+## Full-profile results with optimized Residual AI
 
 The main table aggregates five independently generated and trained
-spatial-holdout runs, with 4,000 evaluation samples per seed. These artifacts
-predate the trust-region change and are retained as an auditable baseline; they
-must be regenerated before citing full-profile results for the optimized model.
+spatial-holdout runs, with 4,000 evaluation samples per seed. The Residual AI
+uses the current 50% correction scale and the training-only 90th-percentile cap.
 
 | Method | Mean error (m) | RMSE (m) | Median (m) | P90 (m) | Warmed one-row time (ms) |
 |---|---:|---:|---:|---:|---:|
-| Geometric LS | 5.36 | 6.16 | 4.81 | 9.58 | 2.72 |
-| KNN | 7.43 | 7.92 | 7.11 | 11.08 | 1.44 |
-| **Direct AI** | **4.27** | **4.74** | **4.08** | **6.82** | **1.34** |
-| Residual AI | 7.29 | 7.75 | 7.08 | 10.39 | 14.38 |
+| Geometric LS | 5.36 | 6.16 | 4.81 | 9.58 | 5.19 |
+| KNN | 7.43 | 7.92 | 7.11 | 11.08 | **1.61** |
+| Direct AI | 4.27 | **4.74** | 4.08 | **6.82** | 3.77 |
+| **Residual AI** | **3.90** | 4.88 | **3.29** | 7.97 | 25.50 |
 
-Under this specific protocol, Direct AI reduced mean error by **20.4%**
-relative to Geometric LS. The ranking is not universal: Geometric LS remained
-stronger under critical anchor failures, and Residual AI did not improve the
-main baseline before the trust-region change. Negative results are
-intentionally retained.
+The optimized Residual AI reduced mean error by **27.1%** versus Geometric LS
+and **8.5%** versus Direct AI. It achieved the best mean, median, LoS, and NLoS
+errors across the five seeds. Direct AI retained the best RMSE and P90 and was
+substantially faster and smaller, so the accuracy gain comes with a clear
+deployment-cost trade-off.
 
 <table>
   <tr>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/error_cdf.png" alt="Localization error CDF"><br>
       <strong>Error CDF</strong><br>
-      Seed-42 spatial-holdout diagnostic; not a pooled five-seed CDF.
+      Root-seed spatial-holdout diagnostic; not a pooled five-seed CDF or a
+      row from the independently regenerated five-seed aggregate.
     </td>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/robustness_results.png" alt="Robustness results"><br>
@@ -173,8 +173,8 @@ intentionally retained.
     <td width="50%" align="center">
       <img src="results/full-profile/figures/ablation_results.png" alt="Residual model ablation"><br>
       <strong>Ablation</strong><br>
-      LoS/NLoS features helped the saved residual model, while spatial-bias
-      training did not.
+      LoS/NLoS features helped the optimized residual model. Removing
+      spatial-bias training slightly lowered error in this seed-42 ablation.
     </td>
     <td width="50%" align="center">
       <img src="results/full-profile/figures/runtime_comparison.png" alt="Runtime comparison"><br>
