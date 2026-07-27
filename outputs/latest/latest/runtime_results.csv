@@ -1,0 +1,6 @@
+algorithm,training_time_s,inference_time_ms,batch_inference_time_ms,batch_amortized_time_ms,model_size_mb,dashboard_update_ms,dashboard_update_scope
+Geometric LS,2.099999619531445e-06,5.190799999581941,22128.756799999792,5.532189199999948,0.0006723403930664062,7.296750000023167,saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering
+KNN,4.893909000000349,1.6121999997267267,1046.3703000004898,0.26159257500012245,4.341403007507324,7.449300000189396,saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering
+Direct AI,20.88412470000003,3.768500000660424,9.123499999986961,0.0022808749999967404,0.16312122344970703,7.790249998834042,saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering
+Residual AI,16.251457800000026,25.4955999998856,20486.617399999886,5.121654349999972,207.80686378479004,7.680550000259245,saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering
+Residual AI + Kalman,16.251457800000026,18.570899999758694,21911.077699999623,5.477769424999906,207.80743312835693,8.333649999258341,saved-frame selection and KPI preparation; excludes Streamlit and Plotly rendering

@@ -1,0 +1,10 @@
+{
+  "training_seed": 42,
+  "evaluation_seeds": [
+    42,
+    123,
+    2026,
+    31415,
+    27182
+  ]
+}
