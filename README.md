@@ -111,10 +111,36 @@ The framework is divided into four auditable layers:
   </tr>
 </table>
 
-## Full-profile results
+## Residual AI optimization update
+
+The current source applies a conservative residual trust region: predictions
+use 50% of the learned correction, and unusually large corrections are capped
+at the 90th percentile of training residual norms. The cap is learned from the
+training split only; it does not use the spatial holdout.
+
+A three-seed Quick-profile evaluation, with independent data generation and
+training for every seed, produced:
+
+| Method | Mean error across seeds (m) | Mean P90 (m) | Mean NLoS error (m) |
+|---|---:|---:|---:|
+| Geometric LS | 5.304 | 9.583 | 5.796 |
+| Direct AI | 4.304 | **7.303** | 4.392 |
+| Residual AI, old policy | 7.372 | 10.630 | 7.554 |
+| **Residual AI, trust-region policy** | **3.969** | 8.210 | **4.234** |
+
+The optimized Residual AI reduced mean error by **46.2%** versus the old
+Residual policy, **25.2%** versus Geometric LS, and **7.8%** versus Direct AI
+under this Quick-profile protocol. Per-seed values are available in
+[`quick_three_seed_results.csv`](results/residual-optimization/quick_three_seed_results.csv).
+Seeds 42 and 123 served as development diagnostics; the untouched seed 2026
+also improved from 7.088 m to 3.884 m (**45.2%**).
+
+## Archived full-profile results (pre-optimization)
 
 The main table aggregates five independently generated and trained
-spatial-holdout runs, with 4,000 evaluation samples per seed.
+spatial-holdout runs, with 4,000 evaluation samples per seed. These artifacts
+predate the trust-region change and are retained as an auditable baseline; they
+must be regenerated before citing full-profile results for the optimized model.
 
 | Method | Mean error (m) | RMSE (m) | Median (m) | P90 (m) | Warmed one-row time (ms) |
 |---|---:|---:|---:|---:|---:|
@@ -126,7 +152,8 @@ spatial-holdout runs, with 4,000 evaluation samples per seed.
 Under this specific protocol, Direct AI reduced mean error by **20.4%**
 relative to Geometric LS. The ranking is not universal: Geometric LS remained
 stronger under critical anchor failures, and Residual AI did not improve the
-main baseline. Negative results are intentionally retained.
+main baseline before the trust-region change. Negative results are
+intentionally retained.
 
 <table>
   <tr>
@@ -169,11 +196,13 @@ scenarios, so the dashboard works immediately without downloading model
 checkpoints or retraining. Its `manifest.json` records the compact file sizes
 and hashes; `source_run_manifest.json` preserves the original Full-run record.
 
+After creating the GitHub repository, replace `YOUR_GITHUB_USERNAME` in the
+two clone commands below with the repository owner's account name.
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python -m venv .venv
@@ -185,7 +214,7 @@ python -m venv .venv
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python3 -m venv .venv
@@ -279,3 +308,8 @@ This is a lightweight two-dimensional RSS twin. It does not model a complete
 three-dimensional multipath, dynamic human blockage, or a synchronized
 physical twin. Domain-shift experiments are controlled simulator stress tests,
 not evidence of transfer to a real building.
+
+## Project team
+
+Xin Bao · Chenghao Li · Yuhang Li · Yixuan Mi · Qihan Wu · Yuhan Wang ·
+Chuchen Xu · Tingting Yang

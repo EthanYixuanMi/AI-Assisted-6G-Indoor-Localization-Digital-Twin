@@ -36,7 +36,7 @@
 仓库把环境生成、RSS 类测量仿真、模型训练、空间留出评估、鲁棒性扫描、
 论文图表和 Streamlit 结果回放连接成一条可复现流水线。
 
-> **范围说明：** 仓库中的所有数字和图片都来自纯软件仿真。本项目不声称已经
+> **范围说明：**仓库中的所有数字和图片都来自纯软件仿真。本项目不声称已经
 > 实现真实 6G 部署、标准化 3GPP 信道或真实建筑定位精度。
 
 ## 一览
@@ -103,9 +103,33 @@
   </tr>
 </table>
 
-## Full Profile 结果
+## Residual AI 优化更新
 
-主结果聚合 5 次独立数据生成和模型训练。每个 seed 使用 4,000 个空间留出样本。
+当前源码为 Residual AI 加入了保守的残差信任域：最终预测使用学习修正量
+的 50%，同时将异常大的修正限制在训练集残差范数的第 90 百分位以内。
+该上限只由训练集计算，不读取空间留出测试集。
+
+使用 Quick profile 的 3 个 seed 进行独立数据生成和独立训练后，评估结果如下：
+
+| 方法 | 跨 seed 平均误差 (m) | 平均 P90 (m) | 平均 NLoS 误差 (m) |
+|---|---:|---:|---:|
+| Geometric LS | 5.304 | 9.583 | 5.796 |
+| Direct AI | 4.304 | **7.303** | 4.392 |
+| 旧策略 Residual AI | 7.372 | 10.630 | 7.554 |
+| **信任域 Residual AI** | **3.969** | 8.210 | **4.234** |
+
+在这一 Quick-profile 协议下，优化后的 Residual AI 平均误差相对旧策略降低
+**46.2%**，相对 Geometric LS 降低 **25.2%**，相对 Direct AI 降低
+**7.8%**。每个 seed 的原始数值见
+[`quick_three_seed_results.csv`](results/residual-optimization/quick_three_seed_results.csv)。
+seed 42 和 123 用作开发诊断；未参与策略选择的 seed 2026 也从 7.088 m
+降至 3.884 m，改善 **45.2%**。
+
+## 归档的 Full Profile 结果（优化前）
+
+下表聚合 5 次独立数据生成和模型训练，每个 seed 使用 4,000 个空间留出样本。
+这些结果生成于信任域优化之前，现保留为可审计基线；正式引用优化后模型的
+Full-profile 指标前，需要重新运行 Full profile。
 
 | 方法 | 平均误差 (m) | RMSE (m) | 中位数 (m) | P90 (m) | 单行预热推理 (ms) |
 |---|---:|---:|---:|---:|---:|
@@ -116,7 +140,7 @@
 
 在这一特定协议下，Direct AI 相对 Geometric LS 将平均误差降低了
 **20.4%**。但该排序并不普适：关键锚点失效时 Geometric LS 更稳健，
-Residual AI 也没有超过主基线。仓库会完整保留这些不利结果。
+优化前的 Residual AI 也没有超过主基线。仓库会完整保留这些不利结果。
 
 <table>
   <tr>
@@ -157,11 +181,13 @@ Residual AI 也没有超过主基线。仓库会完整保留这些不利结果�
 其中 `manifest.json` 记录精简文件的实际大小和哈希，
 `source_run_manifest.json` 则保留原始 Full 运行记录。
 
+创建 GitHub 仓库后，请将下面两条 clone 命令中的
+`YOUR_GITHUB_USERNAME` 替换为仓库所有者的账号名。
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python -m venv .venv
@@ -173,7 +199,7 @@ python -m venv .venv
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/EthanYixuanMi/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
+git clone https://github.com/YOUR_GITHUB_USERNAME/AI-Assisted-6G-Indoor-Localization-Digital-Twin.git
 cd AI-Assisted-6G-Indoor-Localization-Digital-Twin
 
 python3 -m venv .venv
@@ -260,3 +286,7 @@ python -m pytest -q --basetemp .test-tmp/pytest
 CSI、天线阵列、同步误差、三维多径或动态人体遮挡，也没有物理系统的双向同步。
 Domain Shift 只是受控的仿真压力测试，不能作为真实建筑迁移证据。
 
+## 项目成员
+
+Xin Bao · Chenghao Li · Yuhang Li · Yixuan Mi · Qihan Wu · Yuhan Wang ·
+Chuchen Xu · Tingting Yang
