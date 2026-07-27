@@ -136,6 +136,50 @@ def _prediction_array(details: pd.DataFrame) -> np.ndarray:
     return details.loc[:, ["geometric_x", "geometric_y"]].to_numpy(dtype=float)
 
 
+def _residual_locator_kwargs(
+    config: Mapping[str, Any],
+    *,
+    seed: int,
+    feature_groups: Sequence[str] | None = None,
+) -> dict[str, Any]:
+    """Resolve every Residual AI option from configuration in one place."""
+
+    residual_config = config.get("models", {}).get("residual_ai", {})
+    max_depth_value = residual_config.get("max_depth", 18)
+    cap_quantile_value = residual_config.get("correction_cap_quantile")
+    kwargs: dict[str, Any] = {
+        "estimator": str(residual_config.get("estimator", "extra_trees")),
+        "n_estimators": int(residual_config.get("n_estimators", 120)),
+        "max_depth": (
+            None if max_depth_value is None else int(max_depth_value)
+        ),
+        "min_samples_leaf": int(
+            residual_config.get("min_samples_leaf", 2)
+        ),
+        "max_features": residual_config.get("max_features", 1.0),
+        "correction_scale": float(
+            residual_config.get("correction_scale", 1.0)
+        ),
+        "correction_cap_quantile": (
+            None
+            if cap_quantile_value is None
+            else float(cap_quantile_value)
+        ),
+        "random_state": int(seed),
+        "n_jobs": 1,
+    }
+    configured_groups = residual_config.get("feature_groups")
+    if feature_groups is not None:
+        kwargs["feature_groups"] = tuple(feature_groups)
+    elif configured_groups is not None:
+        if isinstance(configured_groups, (str, bytes)) or not isinstance(
+            configured_groups, Sequence
+        ):
+            raise ValueError("models.residual_ai.feature_groups must be a list.")
+        kwargs["feature_groups"] = tuple(str(group) for group in configured_groups)
+    return kwargs
+
+
 def _train_models(
     config: Mapping[str, Any],
     splits: Mapping[str, pd.DataFrame],
@@ -195,14 +239,9 @@ def _train_models(
     )
     direct.fit(train, validation_frame=validation)
 
-    residual_config = model_config.get("residual_ai", {})
     residual = ResidualAILocator(
         environment.anchor_ids,
-        estimator="extra_trees",
-        n_estimators=int(residual_config.get("n_estimators", 120)),
-        max_depth=int(residual_config.get("max_depth", 18)),
-        random_state=seed,
-        n_jobs=1,
+        **_residual_locator_kwargs(config, seed=seed),
     )
     residual.fit(
         train,
@@ -241,7 +280,7 @@ def _train_models(
     model_sizes["Residual AI + Kalman"] += model_sizes["Residual AI"]
 
     metadata = {
-        "model_schema_version": 1,
+        "model_schema_version": 2,
         "config_sha256": _config_sha256(config),
         "seed": seed,
         "anchor_ids": list(environment.anchor_ids),
@@ -253,6 +292,19 @@ def _train_models(
         "direct_ai_validation_scores": direct.validation_scores_,
         "residual_estimator": residual.selected_estimator_,
         "residual_validation_scores": residual.validation_scores_,
+        "residual_ai_config": {
+            "configured_estimator": residual.estimator,
+            "selected_estimator": residual.selected_estimator_,
+            "feature_groups": list(residual.feature_groups),
+            "feature_names": list(residual.feature_names_),
+            "n_estimators": residual.n_estimators,
+            "max_depth": residual.max_depth,
+            "min_samples_leaf": residual.min_samples_leaf,
+            "max_features": residual.max_features,
+            "correction_scale": residual.correction_scale,
+            "correction_cap_quantile": residual.correction_cap_quantile,
+            "learned_correction_cap": residual.correction_cap_,
+        },
         "training_time_s": training_times,
         "model_size_mb": model_sizes,
         "model_files": file_names,
@@ -988,9 +1040,6 @@ def _ablation_evaluation(
         }
     )
 
-    residual_config = config.get("models", {}).get("residual_ai", {})
-    ablation_trees = int(residual_config.get("n_estimators", 120))
-    ablation_depth = int(residual_config.get("max_depth", 18))
     for variant in (
         "without_los_nlos",
         "without_geometric_residual",
@@ -998,12 +1047,11 @@ def _ablation_evaluation(
     ):
         model = ResidualAILocator(
             Environment.from_config(config).anchor_ids,
-            estimator="extra_trees",
-            feature_groups=ABLATION_FEATURE_GROUPS[variant],
-            n_estimators=ablation_trees,
-            max_depth=ablation_depth,
-            random_state=seed,
-            n_jobs=1,
+            **_residual_locator_kwargs(
+                config,
+                seed=seed,
+                feature_groups=ABLATION_FEATURE_GROUPS[variant],
+            ),
         )
         model.fit(
             train,
@@ -1050,11 +1098,7 @@ def _ablation_evaluation(
     no_bias_geo_validation = _geometric_details(geometric, no_bias_validation)
     no_bias_model = ResidualAILocator(
         Environment.from_config(config).anchor_ids,
-        estimator="extra_trees",
-        n_estimators=ablation_trees,
-        max_depth=ablation_depth,
-        random_state=seed,
-        n_jobs=1,
+        **_residual_locator_kwargs(config, seed=seed),
     )
     no_bias_model.fit(
         no_bias_train,
