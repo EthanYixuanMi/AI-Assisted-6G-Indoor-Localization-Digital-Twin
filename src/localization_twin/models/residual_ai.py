@@ -34,6 +34,8 @@ class ResidualAILocator:
         max_depth: int | None = 18,
         min_samples_leaf: int = 2,
         max_features: float | str | None = 1.0,
+        correction_scale: float = 1.0,
+        correction_cap_quantile: float | None = None,
         random_state: int = 42,
         n_jobs: int = 1,
     ) -> None:
@@ -51,6 +53,19 @@ class ResidualAILocator:
         self.max_depth = max_depth
         self.min_samples_leaf = int(min_samples_leaf)
         self.max_features = max_features
+        self.correction_scale = float(correction_scale)
+        if not 0.0 <= self.correction_scale <= 1.0:
+            raise ValueError("correction_scale must be in [0, 1].")
+        self.correction_cap_quantile = (
+            None
+            if correction_cap_quantile is None
+            else float(correction_cap_quantile)
+        )
+        if (
+            self.correction_cap_quantile is not None
+            and not 0.0 < self.correction_cap_quantile <= 1.0
+        ):
+            raise ValueError("correction_cap_quantile must be in (0, 1].")
         self.random_state = int(random_state)
         self.n_jobs = int(n_jobs)
         self.imputer_: SimpleImputer | None = None
@@ -58,6 +73,7 @@ class ResidualAILocator:
         self.selected_estimator_: str | None = None
         self.validation_scores_: dict[str, float] = {}
         self.feature_names_: list[str] = []
+        self.correction_cap_: float | None = None
         self.training_time_s_: float | None = None
 
     @staticmethod
@@ -123,6 +139,23 @@ class ResidualAILocator:
             return ExtraTreesRegressor(**common)
         return RandomForestRegressor(**common)
 
+    def _apply_correction_policy(self, correction: Any) -> np.ndarray:
+        """Apply the configured training-only trust region to raw corrections."""
+
+        bounded = np.array(correction, dtype=float, copy=True)
+        if bounded.ndim != 2 or bounded.shape[1] != 2:
+            raise RuntimeError("Unexpected residual prediction shape.")
+        if np.any(~np.isfinite(bounded)):
+            raise RuntimeError("Residual prediction contains NaN or infinite values.")
+        correction_cap = getattr(self, "correction_cap_", None)
+        if correction_cap is not None:
+            norms = np.linalg.norm(bounded, axis=1)
+            scale = np.ones_like(norms)
+            over_cap = norms > correction_cap
+            scale[over_cap] = correction_cap / norms[over_cap]
+            bounded *= scale[:, None]
+        return float(getattr(self, "correction_scale", 1.0)) * bounded
+
     def fit(
         self,
         train_frame: pd.DataFrame,
@@ -157,6 +190,18 @@ class ResidualAILocator:
         if true_train.shape != geometric_train.shape:
             raise ValueError("Residual targets must have shape (n_samples, 2).")
         residual_targets = true_train - geometric_train
+        if np.any(~np.isfinite(residual_targets)):
+            raise ValueError("Residual targets contain NaN or infinite values.")
+        self.correction_cap_ = (
+            None
+            if self.correction_cap_quantile is None
+            else float(
+                np.quantile(
+                    np.linalg.norm(residual_targets, axis=1),
+                    self.correction_cap_quantile,
+                )
+            )
+        )
 
         self.imputer_ = SimpleImputer(
             strategy="median",
@@ -191,7 +236,9 @@ class ResidualAILocator:
                 )
                 corrected = (
                     geometric_validation_values
-                    + candidate.predict(validation_features)
+                    + self._apply_correction_policy(
+                        candidate.predict(validation_features)
+                    )
                 )
                 self.validation_scores_[estimator_name] = float(
                     np.mean(np.linalg.norm(corrected - validation_true, axis=1))
@@ -222,7 +269,7 @@ class ResidualAILocator:
         correction = np.asarray(self.model_.predict(features), dtype=float)
         if correction.shape != (len(frame), 2):
             raise RuntimeError("Unexpected residual prediction shape.")
-        return correction
+        return self._apply_correction_policy(correction)
 
     def predict(
         self,
@@ -264,6 +311,14 @@ class ResidualAILocator:
         loaded = joblib.load(Path(path))
         if not isinstance(loaded, cls):
             raise TypeError(f"{path!s} does not contain a {cls.__name__}.")
+        # Older joblib artifacts predate the correction trust-region policy.
+        # Treat them as the original unscaled, uncapped model.
+        if not hasattr(loaded, "correction_scale"):
+            loaded.correction_scale = 1.0
+        if not hasattr(loaded, "correction_cap_quantile"):
+            loaded.correction_cap_quantile = None
+        if not hasattr(loaded, "correction_cap_"):
+            loaded.correction_cap_ = None
         return loaded
 
 
