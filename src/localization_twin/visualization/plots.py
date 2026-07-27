@@ -593,8 +593,18 @@ def _ablation_figure(
         linewidth=0.45,
         capsize=2.0,
     )
+    display_labels = {
+        "full": "Full model",
+        "without_los_nlos": "Without LoS/NLoS features",
+        "without_geometric_residual": "Without residual-cost feature",
+        "without_anchor_mask": "Without anchor mask",
+        "without_spatial_bias_training": "Without spatial-bias training",
+    }
     labels = [
-        textwrap.fill(str(label), width=32)
+        textwrap.fill(
+            display_labels.get(str(label), str(label).replace("_", " ")),
+            width=32,
+        )
         for label in aggregate["variant"].tolist()
     ]
     ax.set_yticks(y, labels)
